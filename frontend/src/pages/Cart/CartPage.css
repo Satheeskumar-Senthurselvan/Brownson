@@ -1,0 +1,265 @@
+.cart-container {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.empty-cart {
+  text-align: center;
+  color: #B82933;
+  font-size: 24px;
+  margin-top: 80px;
+}
+
+.cart-title {
+  color: #B82933;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.cart-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.cart-items {
+  flex: 1;
+  min-width: 60%;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.cart-item img {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+  border: 2px solid #B82933;
+}
+
+.item-name {
+  flex: 1;
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+}
+
+.item-price {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity-control button {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #B82933;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.quantity-control input {
+  width: 40px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.remove-button {
+  font-size: 20px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-summary {
+  width: 280px;
+  height: 280px;
+  padding: 20px;
+  border: 2px solid #B82933;
+  border-radius: 10px;
+  background-color: #fff9f9;
+}
+
+.cart-summary h3 {
+  font-size: 22px;
+  color: #B82933;
+  margin-bottom: 15px;
+}
+
+.cart-summary p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #B82933;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background-color: #8d1f28;
+}
+
+.page-wrapper {
+  align-items: center;
+  padding-top: 80px;
+}
+
+.shipping-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+  background-color: #fff9f9;
+  border: 2px solid #B82933;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.shipping-title {
+  text-align: center;
+  font-size: 26px;
+  color: #B82933;
+  margin-bottom: 25px;
+}
+
+.shipping-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.shipping-form label {
+  font-weight: bold;
+  color: #333;
+}
+
+.shipping-form input,
+.shipping-form select {
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #B82933;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.shipping-btn {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #B82933;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.shipping-btn:hover {
+  background-color: #8d1f28;
+}
+
+.payment-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+  background-color: #fff9f9;
+  border: 2px solid #B82933;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.payment-title {
+  text-align: center;
+  color: #B82933;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.payment-form label {
+  font-weight: 500;
+  color: #333;
+}
+
+.payment-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.payment-btn {
+  background-color: #B82933;
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.payment-btn:hover {
+  background-color: #8d1f28;
+}
+.payment-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.payment-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-field label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.payment-field input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}

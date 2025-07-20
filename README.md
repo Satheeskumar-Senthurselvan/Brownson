@@ -1,2 +1,118 @@
-# food-production-system
-Developing a new e-commerce and production management system for food company Brownson, enabling direct-to-customer sales. The project uses Agile PRINCE2 methodology and the MERN stack.
+# Brownson: Integrated E-commerce & Production Management System
+
+Welcome to the Brownson project repository! This initiative is all about transforming how Brownson, a dynamic food company, manages its operations and connects with its customers.
+
+## Project Overview
+
+Our core mission is to develop a robust and intuitive system that seamlessly integrates a powerful e-commerce platform with an efficient production management solution. This will empower Brownson to revolutionize its sales model, moving from traditional channels to a direct-to-customer (D2C) approach, and streamlining its entire value chain from online order placement to efficient product delivery.
+
+## Key Features
+
+This comprehensive system is designed to provide powerful functionalities, including:
+
+* **Online E-commerce Store:** A user-friendly and responsive interface allowing customers to effortlessly browse products, manage their shopping carts, and complete secure purchases.
+* **Production Management Suite:** Tools for real-time inventory tracking, efficient order processing, intelligent production scheduling, and comprehensive oversight of manufacturing workflows.
+* **Direct-to-Customer (D2C) Enablement:** A streamlined, integrated process that connects online sales directly to production and fulfillment, enhancing efficiency and customer satisfaction.
+* **Secure User Management:** Robust authentication and authorization mechanisms for customers, administrators, and internal staff, ensuring data integrity and access control.
+* **Comprehensive Data Handling:** Efficient management of product catalogs, customer profiles, order history, and operational data.
+
+## Technology Stack
+
+This project is proudly built using the **MERN stack**, a modern and powerful combination of technologies perfect for full-stack web development:
+
+* **MongoDB:** Our flexible NoSQL database, designed for scalable and efficient data storage.
+* **Express.js:** A minimalist yet powerful web application framework for Node.js, forming the backbone of our RESTful API.
+* **React.js:** A declarative, component-based JavaScript library for crafting dynamic and interactive user interfaces on the frontend.
+* **Node.js:** The JavaScript runtime environment that powers our backend, enabling scalable and high-performance server-side applications.
+
+**Other essential tools and libraries include:**
+
+* **Playwright:** Our chosen framework for robust end-to-end (E2E) testing across various browsers, ensuring application stability and reliability.
+* **Environment Management:** `dotenv` for securely handling environment variables.
+* **Authentication & Authorization:** `jsonwebtoken` for token-based authentication and `bcryptjs` for secure password hashing.
+* **Data Handling:** `cors` for cross-origin requests, `cookie-parser` for managing HTTP cookies, `multer` for handling file uploads, and `nodemailer` for email functionalities.
+
+## Development Methodology
+
+We embrace an **Agile PRINCE2** hybrid methodology for this project. This approach combines the rigorous, structured governance and well-defined project management principles of PRINCE2 with the iterative, flexible, and adaptive nature of Agile development. This balanced strategy ensures clear project direction, effective risk management, and the agility to quickly respond to evolving requirements and integrate continuous feedback.
+
+## Getting Started (For Developers)
+
+To set up and run this project on your local machine for development, follow these steps:
+
+### Prerequisites
+
+Please ensure you have the following software installed on your system:
+
+* **Node.js**: [LTS version recommended](https://nodejs.org/en/download/)
+* **npm** (Node Package Manager) or **Yarn**: (Usually comes with Node.js installation, or [install Yarn separately](https://yarnpkg.com/)).
+* **MongoDB**: Either a [local MongoDB installation](https://www.mongodb.com/try/download/community) or access to a cloud-hosted service like [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+
+### Installation & Setup
+
+1.  **Clone the Repository:**
+    Start by getting a local copy of the project:
+    ```bash
+    git clone [https://github.com/YourUsername/Brownson.git](https://github.com/YourUsername/Brownson.git) # Replace with your actual repository URL
+    cd Brownson
+    ```
+
+2.  **Backend Configuration:**
+    Navigate into the `backend` directory and install its dependencies. You'll also need to set up your environment variables.
+    ```bash
+    cd backend
+    npm install # or yarn install
+    ```
+    Create a `.env` file within the `backend/config/` directory (e.g., `backend/config/config.env`). Populate it with your database connection string, JWT secrets, port numbers, and any other necessary backend variables.
+    *(Tip: Check for a `config.env.example` file in the `backend/config` folder for guidance on required variables.)*
+
+3.  **Frontend Configuration:**
+    Move back to the project root and then into the `frontend` directory to install its dependencies.
+    ```bash
+    cd ../frontend
+    npm install # or yarn install
+    ```
+    Create a `.env` file (e.g., `frontend/.env.local` or `frontend/.env`) in the `frontend` directory. Add any frontend-specific environment variables, such as your API base URL (`REACT_APP_API_URL=http://localhost:4000`).
+
+### Running the Application Locally
+
+You'll need two separate terminal windows for the backend and frontend.
+
+1.  **Start the Backend Server:**
+    In your first terminal, navigate to the `backend` directory and run:
+    ```bash
+    cd backend
+    npm start # or yarn start
+    ```
+    You should see a message indicating the backend server is running (typically on `http://localhost:4000`).
+
+2.  **Start the Frontend Development Server:**
+    In your second terminal, navigate to the `frontend` directory and run:
+    ```bash
+    cd frontend
+    npm start # or yarn start
+    ```
+    This will usually open the frontend application automatically in your default web browser at `http://localhost:3000`.
+
+## Project Structure
+
+This repository is organized into distinct, manageable parts:
+
+* **`backend/`**: Contains the robust Node.js/Express.js API that powers the application. [Learn more about the Backend](./backend/README.md)
+* **`frontend/`**: Houses the interactive React.js user interface. [Explore the Frontend](./frontend/README.md)
+* **`Testing/`**: Dedicated to our comprehensive Playwright end-to-end test suite. [Dive into Testing Details](./Testing/README.md)
+
+## Contributing
+
+We welcome contributions to the Brownson project! If you'd like to get involved, please follow these general steps:
+
+1.  Fork the repository.
+2.  Create a new feature branch (`git checkout -b feature/your-feature-name`).
+3.  Make your changes, ensuring tests pass and code adheres to style guidelines.
+4.  Commit your changes with a clear, concise message (`git commit -m 'feat: Implement new user authentication flow'`).
+5.  Push your branch (`git push origin feature/your-feature-name`).
+6.  Open a Pull Request describing your changes.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file in the project root for full details.

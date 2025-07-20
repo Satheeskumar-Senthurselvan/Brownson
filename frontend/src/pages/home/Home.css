@@ -1,0 +1,260 @@
+
+.home .content {
+  max-width: 50rem;
+}
+
+.home .content h3 {
+  font-size: 6rem;
+  color: #ffffff;
+  
+}
+
+.home .content h2 {
+  font-size: 0.8rem;
+  color: #ffffff;
+  padding-left: 1rem;
+  padding-bottom: 2rem;
+}
+
+.home .content .btn {
+  color: #ffffff;
+  border: 2px solid #fff;
+  padding: 1rem 3rem;
+  text-decoration: none;
+  font-size: 2rem;
+  position: relative;
+  z-index: 1;
+  
+}
+
+.home .content .btn:hover {
+  color: #B82933;
+}
+
+.home .content .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: #ffffff;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.home .content .btn:hover::before {
+  width: 100%;
+}
+
+.home .wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 9rem;
+  
+}
+.services{
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+.services .box-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.5rem;
+  padding-bottom: 5rem;
+}
+.services h1{
+    font-size:3rem;
+    color: #B82933;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
+
+.services .box-container .box {
+  background: #eeeeee;
+  padding: 1rem;
+  text-align: center;  
+}
+
+.services .box-container .box h3 {
+  font-size: 2.2rem;
+  color: #130f40;
+  padding: 1rem 0;
+}
+.about {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 5rem;
+  padding-top: 5rem;
+}
+
+.about .image {
+  box-flex: 1;
+  flex: 1 1 40rem;
+}
+
+.about .image img {
+  width: 90%;
+}
+
+.about .content {
+  flex: 1 1 40rem;
+}
+.about .content h1{
+  font-size: 3rem;
+  padding-bottom: 1rem;
+  color: #B82933;
+  font-weight: bold;
+}
+.about .content h3 {
+  color: #130f40;
+  font-size: 4rem;
+}
+
+.about .content h3 span {
+  color: #B82933;
+}
+
+.about .content p {
+  font-size: 1.4rem;
+  color: #666666;
+  padding: 1rem 0;
+  line-height: 2;
+}
+
+.contact {
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.contact .image {
+  box-flex: 1;
+  flex: 1 1 40rem;
+}
+
+.contact .image img {
+  width: 100%
+}
+
+.contact form {
+  box-flex: 1;
+  flex: 1 1 40rem;
+  padding: 2rem 7%;
+}
+
+.contact form .btn {
+  border: 2px solid #B82933;
+  width: 100%;
+  background: #B82933;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+
+}
+
+
+
+.contact form h3 {
+  font-size: 3rem;
+  padding-bottom: 1rem;
+  color: #B82933;
+  font-weight: bold;
+}
+
+.contact form .box,
+.contact form textarea {
+  width: 100%;
+  border-bottom: 0.2rem solid #B82933;
+  border-width: 0.1rem;
+  font-size: 1rem;
+  text-transform: none;
+  color: #000;
+  font-weight: bold;
+  padding: 1.5rem 0;
+}
+
+.contact form textarea {
+  height: 10rem;
+  resize: none;
+}
+.plan{
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 3rem;
+}
+.plan h1{
+  font-size:3rem;
+  color: #B82933;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+.plan .box-container {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.5rem;
+}
+
+.plan .box-container .box {
+  position: relative;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  background: #eeeeee;
+}
+
+.plan .box-container .box .title {
+  text-align: center;
+  color: #B82933;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.plan .box-container .box .day {
+  text-align: center;
+  color: #130f40;
+  font-size: 3.5rem;
+}
+
+.plan .box-container .box .icon {
+  color: #B82933;
+  font-size: 5rem;
+  padding: 2rem 0;
+}
+
+.plan .box-container .box .list {
+  margin: 1rem 0;
+}
+
+.plan .box-container .box .list p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  color: #666666;
+  padding: 1rem 0;
+}
+
+.plan .box-container .box .list p span {
+  color: #B82933;
+}
+
+.plan .box-container .box .amount {
+  font-size: 3rem;
+  font-weight: bolder;
+  color: #130f40;
+}
+
+.plan .box-container .box .amount span {
+  font-size: 3rem;
+}

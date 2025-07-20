@@ -1,0 +1,31 @@
+/* Logo size */
+.logo {
+  height: 50px;
+  width: 100px;
+}
+
+/* Bold nav text */
+.navbar-nav .nav-link {
+  font-weight: bold;
+  color: #000;
+}
+
+
+
+
+.cart-btn,
+.login-btn {
+  background-color: #B82933 !important; 
+  color: white !important;
+  font-weight: bold;
+  margin-right: 10px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  border: none;
+}
+
+/* Optional: Fix for last button */
+.login-btn {
+  margin-right: 1rem;
+}

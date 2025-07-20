@@ -1,0 +1,134 @@
+.profile-page {
+  background: #f9f9f9;
+  padding: 4rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-title {
+  color: #B82933;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .profile-info {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+
+.profile-img {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .profile-img {
+    margin-right: 2rem;
+    margin-bottom: 0;
+  }
+}
+
+.profile-details {
+  text-align: left;
+}
+
+.profile-details p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.7rem;
+}
+
+.update-btn-container {
+  text-align: left;
+  margin-top: 2rem;
+}
+
+.update-btn {
+  background-color: #B82933;
+  color: white;
+  border: none;
+  padding: 0.6rem 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-btn:hover {
+  background-color: #9c1e29;
+}
+
+/* Update Profile Form */
+.update-page{
+  background: #f9f9f9;
+  padding: 4rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.update-profile-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  
+}
+
+.update-form input,
+.update-form textarea {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.update-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+.btn-update {
+  background-color: #B82933;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-update:hover {
+  background-color: #a1202c;
+}
