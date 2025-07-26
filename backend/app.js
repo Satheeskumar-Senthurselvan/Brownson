@@ -1,4 +1,4 @@
-// ✅ Backend: app.js (important parts only)
+// ✅ Backend: app.js (Corrected Middleware Order)
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -33,37 +33,61 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/order', orderRoutes);
 // =======================
 
-connectDatabase(); // This should ideally be called before app.listen, but it's a promise, so it connects asynchronously. It's fine here.
+connectDatabase();
 
-// === NEW: 404 Not Found Handler ===
-// This middleware will be called if no other route matches
+// --- IMPORTANT: NEW ORDERING ---
+
+// 1. All specific routes go first.
+
+// 2. Then, the 404 Not Found Handler for unmatched routes.
+// This will catch any request that didn't hit an API route.
 app.use((req, res, next) => {
-    // For API requests, send JSON response
-    if (req.originalUrl.startsWith('/api/')) {
-        return res.status(404).json({ message: 'API Route Not Found' });
-    }
-    // For non-API requests, you might serve a frontend build or a simple HTML page
-    // For now, let's just return a generic HTML 404 if it's not an API call
-    res.status(404).send('<!DOCTYPE html><html><head><title>Not Found</title></head><body><h1>404 Not Found</h1><p>The requested URL was not found on this server.</p></body></html>');
+    if (req.originalUrl.startsWith('/api/')) {
+        // Ensure this 404 also sends `success: false` for consistency in API responses
+        return res.status(404).json({ success: false, message: 'API Route Not Found' });
+    }
+    res.status(404).send('<!DOCTYPE html><html><head><title>Not Found</title></head><body><h1>404 Not Found</h1><p>The requested URL was not found on this server.</p></body></html>');
 });
 
-// === NEW: Global Error Handler ===
-// This middleware will catch any errors thrown in your route handlers
+// 3. Finally, the Global Error Handler.
+// This catches all errors passed via `next(err)` from any middleware or route.
 app.use((err, req, res, next) => {
-    console.error(err.stack); // Log the error stack for debugging
-    const statusCode = err.statusCode || 500;
-    const message = err.message || 'Internal Server Error';
+    console.error('Global Error Handler: Raw error object:', err);
+    console.error('Global Error Handler: Error stack:', err.stack);
 
-    // Send JSON error response for API calls
-    res.status(statusCode).json({
-        message: message,
-        // In development, you might want to send the error for more details
-        // error: process.env.NODE_ENV === 'development' ? err : {}
-    });
+    let statusCode = err.statusCode || 500;
+    let message = err.message || 'Internal Server Error';
+
+    // Handle specific error types for better messages
+    if (err.name === 'CastError') {
+        message = `Resource not found. Invalid ${err.path}: ${err.value}`;
+        statusCode = 400;
+    }
+    if (err.code === 11000) { // Mongoose duplicate key error
+        const value = Object.keys(err.keyValue)[0];
+        message = `Duplicate ${value} entered`;
+        statusCode = 400;
+    }
+    if (err.name === 'JsonWebTokenError') {
+        statusCode = 401;
+        message = 'Invalid or malformed token. Please login again.';
+    }
+    if (err.name === 'TokenExpiredError') {
+        statusCode = 401;
+        message = 'Token has expired. Please login again.';
+    }
+
+    const finalResponseBody = {
+        success: false,
+        message: message,
+    };
+
+    console.log(`Global Error Handler: Sending ${statusCode} response:`, JSON.stringify(finalResponseBody, null, 2));
+
+    res.status(statusCode).json(finalResponseBody);
 });
-// =======================
 
-const PORT = process.env.PORT || 4000; // Ensure PORT is defined (e.g., in config.env)
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
