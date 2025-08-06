@@ -1,6 +1,6 @@
-// ProductDetail.js
-import React, { Fragment, useEffect, useState, useCallback} from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './StorePage.css';
 import ProductReview from './ProductReview';
 import API_BASE_URL from '../../config';
@@ -14,9 +14,10 @@ const ProductDetail = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [reviews, setReviews] = useState([]);
+  const [reviewErrors, setReviewErrors] = useState({}); // ✅ FIXED
 
-  const loadProduct = useCallback(async () => {
-    const res = await fetch(`${API_BASE_URL}/api/product${id}`, {
+  const loadProduct = async () => {
+    const res = await fetch(`${API_BASE_URL}/api/product/product/${id}`, {
       credentials: 'include',
     });
     const data = await res.json();
@@ -24,9 +25,9 @@ const ProductDetail = () => {
       setProduct(data.product);
       setLoading(false);
     }
-  }, [id]);
+  };
 
-  const loadReviews = useCallback(async () => {
+  const loadReviews = async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/api/product/reviews/${id}`, {
         credentials: 'include',
@@ -34,7 +35,7 @@ const ProductDetail = () => {
 
       const contentType = res.headers.get('content-type');
       if (!res.ok || !contentType || !contentType.includes('application/json')) {
-        const text = await res.text(); // Get raw text for debugging
+        const text = await res.text();
         console.error('❌ Invalid JSON Response:', text);
         throw new Error('Invalid JSON response from server');
       }
@@ -48,13 +49,12 @@ const ProductDetail = () => {
     } catch (error) {
       console.error('Review fetch failed:', error);
     }
-   }, [id]);
+  };
 
-
-   useEffect(() => {
-        loadProduct();
-        loadReviews();
-    }, [id, loadProduct, loadReviews]);
+  useEffect(() => {
+    loadProduct();
+    loadReviews();
+  }, [id]);
 
   const decreaseQty = () => {
     if (quantity <= 1) return;
@@ -67,6 +67,13 @@ const ProductDetail = () => {
   };
 
   const reviewHandler = async () => {
+    const errors = {};
+    if (!rating) errors.rating = 'Rating is required';
+    if (!comment.trim()) errors.comment = 'Comment is required';
+    setReviewErrors(errors);
+
+    if (Object.keys(errors).length > 0) return;
+
     try {
       const res = await fetch('https://brownson-backend.onrender.com/api/product/review', {
         method: 'POST',
@@ -74,19 +81,21 @@ const ProductDetail = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productId: product._id, rating, comment })
       });
+
       const data = await res.json();
       if (res.ok) {
-        alert('Review submitted successfully!');
+        toast.success('Review submitted successfully!');
         setShowReviewBox(false);
         setRating(0);
         setComment('');
+        setReviewErrors({});
         loadReviews();
       } else {
-        alert(data.error || 'Failed to submit review');
+        toast.error(data.error || 'Failed to submit review');
       }
     } catch (err) {
       console.error('Review error:', err);
-      alert('Something went wrong');
+      toast.error('Something went wrong');
     }
   };
 
@@ -107,13 +116,13 @@ const ProductDetail = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        alert('Product added to cart!');
+        toast.success('Product added to cart!');
       } else {
-        alert(data.error || 'Failed to add to cart');
+        toast.error(data.error || 'Failed to add to cart');
       }
     } catch (error) {
       console.error('Add to cart error:', error);
-      alert('Something went wrong while adding to cart.');
+      toast.error('Something went wrong while adding to cart.');
     }
   };
 
@@ -170,18 +179,44 @@ const ProductDetail = () => {
                 {showReviewBox && (
                   <div className="review-popup" style={{ marginTop: '20px' }}>
                     <h3>Submit Review</h3>
+
                     <ul className="stars" style={{ listStyle: 'none', padding: 0, display: 'flex' }}>
                       {[1, 2, 3, 4, 5].map((star) => (
-                        <li key={star} className={`star ${star <= rating ? 'orange' : ''}`} onClick={() => setRating(star)} style={{ fontSize: '24px', cursor: 'pointer', color: star <= rating ? '#B82933' : '#ccc' }}>★</li>
+                        <li
+                          key={star}
+                          className={`star ${star <= rating ? 'orange' : ''}`}
+                          onClick={() => setRating(star)}
+                          style={{
+                            fontSize: '24px',
+                            cursor: 'pointer',
+                            color: star <= rating ? '#B82933' : '#ccc',
+                            border: reviewErrors.rating ? '1px solid red' : 'none',
+                            padding: '2px'
+                          }}
+                        >
+                          ★
+                        </li>
                       ))}
                     </ul>
+
                     <textarea
-                      placeholder="Write your comment..."
+                      placeholder={reviewErrors.comment || "Write your comment..."}
                       className="form-control mt-3"
                       value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                      style={{ width: '100%', minHeight: '100px', marginBottom: '10px' }}
+                      onChange={(e) => {
+                        setComment(e.target.value);
+                        if (reviewErrors.comment) {
+                          setReviewErrors({ ...reviewErrors, comment: '' });
+                        }
+                      }}
+                      style={{
+                        width: '100%',
+                        minHeight: '100px',
+                        marginBottom: '10px',
+                        border: reviewErrors.comment ? '1px solid red' : ''
+                      }}
                     ></textarea>
+
                     <button className="btn-view" onClick={reviewHandler}>Submit</button>
                   </div>
                 )}
