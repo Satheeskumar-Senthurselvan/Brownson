@@ -8,7 +8,7 @@ const UserProfile = () => {
 
   const fetchUserData = async (email) => {
     try {
-      const res = await fetch(`http://localhost:4000/api/auth/user/${email}`);
+      const res = await fetch(`/api/auth/user/${email}`);
       const data = await res.json();
       if (res.ok) {
         setUser(data.user);

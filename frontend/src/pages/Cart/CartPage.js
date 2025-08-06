@@ -12,7 +12,7 @@ export default function CartPage() {
   }, []);
 
   const fetchCart = async () => {
-    const res = await fetch('http://localhost:4000/api/cart', {
+    const res = await fetch('/api/cart', {
       credentials: 'include',
     });
     const data = await res.json();
@@ -52,7 +52,7 @@ export default function CartPage() {
   };
 
   const updateCartItem = async (item, quantity) => {
-    await fetch('http://localhost:4000/api/cart/add', {
+    await fetch('/api/cart/add', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -68,7 +68,7 @@ export default function CartPage() {
   };
 
   const removeItem = async (productId) => {
-    await fetch(`http://localhost:4000/api/cart/remove/${productId}`, {
+    await fetch(`/api/cart/remove/${productId}`, {
       method: 'DELETE',
       credentials: 'include',
     });

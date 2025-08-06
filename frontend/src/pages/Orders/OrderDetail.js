@@ -7,7 +7,7 @@ export default function OrderDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/order/${id}`, {
+    fetch(`/api/order/${id}`, {
       credentials: 'include'
     })
       .then(res => res.json())

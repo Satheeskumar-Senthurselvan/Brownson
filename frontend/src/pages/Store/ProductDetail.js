@@ -1,5 +1,5 @@
 // ProductDetail.js
-import React, { Fragment, useEffect, useState,  useCallback} from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './StorePage.css';
 import ProductReview from './ProductReview';
@@ -14,9 +14,8 @@ const ProductDetail = () => {
   const [comment, setComment] = useState('');
   const [reviews, setReviews] = useState([]);
 
-  const loadProduct = useCallback(() => {
-  const loadProduct = async () => {
-    const res = await fetch(`http://localhost:4000/api/product/product/${id}`, {
+  const loadProduct = useCallback(async () => {
+    const res = await fetch(`/api/product/product/${id}`, {
       credentials: 'include',
     });
     const data = await res.json();
@@ -24,13 +23,11 @@ const ProductDetail = () => {
       setProduct(data.product);
       setLoading(false);
     }
-  };
-  }, []);
+  }, [id]);
 
-  const loadReviews = useCallback(() => {
-  const loadReviews = async () => {
+  const loadReviews = useCallback(async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/product/reviews/${id}`, {
+      const res = await fetch(`/api/product/reviews/${id}`, {
         credentials: 'include',
       });
 
@@ -50,14 +47,13 @@ const ProductDetail = () => {
     } catch (error) {
       console.error('Review fetch failed:', error);
     }
-  };
-}, []); 
+   }, [id]);
 
 
-useEffect(() => {
-  loadProduct();
-  loadReviews();
-}, [id, loadProduct, loadReviews]); // Added loadProduct and loadReviews to the dependency array
+   useEffect(() => {
+        loadProduct();
+        loadReviews();
+    }, [id, loadProduct, loadReviews]);
 
   const decreaseQty = () => {
     if (quantity <= 1) return;
@@ -71,7 +67,7 @@ useEffect(() => {
 
   const reviewHandler = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/product/review', {
+      const res = await fetch('/api/product/review', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -95,7 +91,7 @@ useEffect(() => {
 
   const addToCartHandler = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/cart/add', {
+      const res = await fetch('/api/cart/add', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

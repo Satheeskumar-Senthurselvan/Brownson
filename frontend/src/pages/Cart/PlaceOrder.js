@@ -50,7 +50,7 @@ export default function PlaceOrder() {
       contactNumber: shipping.contactNumber
     };
 
-    fetch('http://localhost:4000/api/order/create', {
+    fetch('/api/order/create', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -66,7 +66,7 @@ export default function PlaceOrder() {
       })
       .then((data) => {
         if (data.success) {
-          fetch('http://localhost:4000/api/cart/clear', {
+          fetch('/api/cart/clear', {
             method: 'DELETE',
             credentials: 'include',
           })

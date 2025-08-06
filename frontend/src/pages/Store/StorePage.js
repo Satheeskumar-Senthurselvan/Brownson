@@ -19,7 +19,7 @@ const StorePage = () => {
   ];
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/product/products')
+    fetch('/api/product/products')
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
