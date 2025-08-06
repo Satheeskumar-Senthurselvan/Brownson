@@ -241,7 +241,7 @@ test.describe('Order API Functional Tests', () => {
         expect(response.status()).toBe(401);
         const responseBody = await response.json();
         expect(responseBody.success).toBe(false);
-        expect(responseBody.message).toContain('Invalid or malformed token');
+        expect(responseBody.message).toContain('Please login to access this resource');
     });
 
     // --- View My Orders Tests (GET /api/order/my-orders) ---
@@ -284,7 +284,7 @@ test.describe('Order API Functional Tests', () => {
         expect(response.status()).toBe(401);
         const responseBody = await response.json();
         expect(responseBody.success).toBe(false);
-        expect(responseBody.message).toContain('Invalid or malformed token');
+        expect(responseBody.message).toContain('Please login to access this resource');
     });
 
     test('Order-ViewMy-005: Should return an empty list if user has no orders', async ({ request }) => {
@@ -371,7 +371,7 @@ test.describe('Order API Functional Tests', () => {
         expect(response.status()).toBe(401);
         const responseBody = await response.json();
         expect(responseBody.success).toBe(false);
-        expect(responseBody.message).toContain('Invalid or malformed token');
+        expect(responseBody.message).toContain('Please login to access this resource');
     });
 
     test('Order-ViewByID-008: Should return 403 if user tries to view another user\'s order', async ({ request }) => {

@@ -11,8 +11,6 @@ export const getProducts = catchAsyncError(async (req, res, next) => {
 
 // Create new product
 export const newProduct = catchAsyncError(async (req, res, next) => {
-  const BASE_URL = `${req.protocol}://${req.get('host')}`;
-  console.log(BASE_URL);
   let images = [];
 
   if (req.files && req.files.length > 0) {
@@ -40,16 +38,21 @@ export const updateProduct = catchAsyncError(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
   if (!product) return next(new ErrorHandler('Product not found', 404));
 
-  const BASE_URL = `${req.protocol}://${req.get('host')}`;
-  let images = req.body.imagesCleared === 'false' ? product.images : [];
+  // Only clear images if explicitly told
+  let images = product.images;
+  if (req.body.imagesCleared === 'true') {
+    images = [];
+  }
 
+  // Append new files to image array
   if (req.files && req.files.length > 0) {
     req.files.forEach(file => {
-      images.push({ image: `${BASE_URL}/uploads/product/${file.filename}` });
+      images.push({ image: `/img/product/${file.filename}` });
     });
   }
 
   req.body.images = images;
+
   const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
@@ -58,15 +61,22 @@ export const updateProduct = catchAsyncError(async (req, res, next) => {
   res.status(200).json({ success: true, product: updated });
 });
 
+
 // Delete product
 export const deleteProduct = catchAsyncError(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
-  if (!product) return next(new ErrorHandler('Product not found', 404));
 
-  //await product.remove();
-  await product.deleteOne();
+  if (!product) {
+    return next(new ErrorHandler('Product not found', 404));
+  }
 
-  res.status(200).json({ success: true, message: 'Product deleted' });
+  // Correct method: delete by ID
+  await Product.findByIdAndDelete(req.params.id);
+
+  res.status(200).json({
+    success: true,
+    message: 'Product deleted',
+  });
 });
 
 // Create or update review
@@ -95,20 +105,26 @@ export const createReview = catchAsyncError(async (req, res, next) => {
 export const getReviews = async (req, res) => {
   try {
     const productId = req.params.id;
+
     if (!productId.match(/^[0-9a-fA-F]{24}$/)) {
       return res.status(400).json({ success: false, error: 'Invalid Product ID format' });
     }
 
-    const product = await Product.findById(productId)
-      .populate('reviews.user', 'name ProfileImg');
+    const product = await Product.findById(productId).populate('reviews.user', 'name ProfileImg');
 
     if (!product) {
       return res.status(404).json({ success: false, error: 'Product not found' });
     }
 
+    const reviewsWithProductName = product.reviews.map((review) => ({
+      ...review.toObject(),
+      productName: product.name,
+      productImage: product.images[0]?.image || ''
+    }));
+
     res.status(200).json({
       success: true,
-      reviews: product.reviews,
+      reviews: reviewsWithProductName,
     });
   } catch (err) {
     console.error('Get Reviews Error:', err);
@@ -141,4 +157,26 @@ export const deleteReview = catchAsyncError(async (req, res, next) => {
 export const getAdminProducts = catchAsyncError(async (req, res, next) => {
   const products = await Product.find();
   res.status(200).json({ success: true, products });
+});
+
+// Get all reviews (Admin)
+export const getAllReviews = catchAsyncError(async (req, res, next) => {
+  const products = await Product.find().populate('reviews.user', 'name');
+
+  const allReviews = [];
+
+  products.forEach(product => {
+    product.reviews.forEach(review => {
+      allReviews.push({
+        productId: product._id,
+        productName: product.name,
+        rating: review.rating,
+        comment: review.comment,
+        reviewer: review.user?.name || 'Unknown',
+        reviewId: review._id,
+      });
+    });
+  });
+
+  res.status(200).json({ success: true, reviews: allReviews });
 });

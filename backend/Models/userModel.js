@@ -31,7 +31,7 @@ const UserSchema = new mongoose.Schema({
   },
   role :{
     type: String,
-    default: 'admin'
+    default: 'user',
   },
   createdAt: {
     type: Date,
@@ -39,5 +39,5 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('user', UserSchema);
 export default User;
