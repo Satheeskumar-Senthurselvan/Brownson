@@ -16,7 +16,7 @@ const ProductDetail = () => {
   const [reviews, setReviews] = useState([]);
 
   const loadProduct = useCallback(async () => {
-    const res = await fetch(`${API_BASE_URL}/api/product/product/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/product${id}`, {
       credentials: 'include',
     });
     const data = await res.json();
