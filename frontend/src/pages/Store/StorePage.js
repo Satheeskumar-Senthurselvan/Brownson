@@ -19,7 +19,7 @@ const StorePage = () => {
   ];
 
   useEffect(() => {
-    fetch('https://brownson-frontend.onrender.com/api/product/products')
+    fetch('https://brownson-backend.onrender.com/api/product/products')
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

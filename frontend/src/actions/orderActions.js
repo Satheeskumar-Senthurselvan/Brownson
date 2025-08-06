@@ -1,7 +1,7 @@
 
 export const userOrders = () => async (dispatch) => {
   try {
-    const res = await fetch('/api/order/my-orders', {
+    const res = await fetch('https://brownson-backend.onrender.com/api/order/my-orders', {
       credentials: 'include',
     });
     const data = await res.json();

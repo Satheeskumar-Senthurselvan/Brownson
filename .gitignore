@@ -46,8 +46,7 @@ Testing/blob-report/
 Testing/playwright/.cache/
 
 backend/uploads/
-
-/backend/config/config.env
+backend/config/config.env
 
 .eslintcache
 .stylelintcache

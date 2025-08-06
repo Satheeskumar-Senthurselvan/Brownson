@@ -7,7 +7,7 @@ export default function OrderDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://brownson-frontend.onrender.com/api/order/${id}`, {
+    fetch(`https://brownson-backend.onrender.com/api/order/${id}`, {
       credentials: 'include'
     })
       .then(res => res.json())
