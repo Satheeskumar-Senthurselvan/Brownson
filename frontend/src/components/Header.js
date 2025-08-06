@@ -10,7 +10,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch('/api/auth/logout', {
+      await fetch('https://brownson-frontend.onrender.com/api/auth/logout', {
         method: 'GET',
         credentials: 'include',
       });

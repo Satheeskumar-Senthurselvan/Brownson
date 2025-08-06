@@ -8,7 +8,7 @@ const UserProfile = () => {
 
   const fetchUserData = async (email) => {
     try {
-      const res = await fetch(`/api/auth/user/${email}`);
+      const res = await fetch(`https://brownson-frontend.onrender.com/api/auth/user/${email}`);
       const data = await res.json();
       if (res.ok) {
         setUser(data.user);

@@ -15,7 +15,7 @@ const ProductDetail = () => {
   const [reviews, setReviews] = useState([]);
 
   const loadProduct = useCallback(async () => {
-    const res = await fetch(`/api/product/product/${id}`, {
+    const res = await fetch(`https://brownson-frontend.onrender.com/api/product/product/${id}`, {
       credentials: 'include',
     });
     const data = await res.json();
@@ -27,7 +27,7 @@ const ProductDetail = () => {
 
   const loadReviews = useCallback(async () => {
     try {
-      const res = await fetch(`/api/product/reviews/${id}`, {
+      const res = await fetch(`https://brownson-frontend.onrender.com/api/product/reviews/${id}`, {
         credentials: 'include',
       });
 
@@ -67,7 +67,7 @@ const ProductDetail = () => {
 
   const reviewHandler = async () => {
     try {
-      const res = await fetch('/api/product/review', {
+      const res = await fetch('https://brownson-frontend.onrender.com/api/product/review', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -91,7 +91,7 @@ const ProductDetail = () => {
 
   const addToCartHandler = async () => {
     try {
-      const res = await fetch('/api/cart/add', {
+      const res = await fetch('https://brownson-frontend.onrender.com/api/cart/add', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
