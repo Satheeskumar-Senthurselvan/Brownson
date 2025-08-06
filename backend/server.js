@@ -22,7 +22,6 @@ const app = express();
 
 app.use(cors({
   origin: 'https://brownson-frontend.onrender.com',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
 
