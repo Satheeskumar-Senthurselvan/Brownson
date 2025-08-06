@@ -1,5 +1,5 @@
 // ProductDetail.js
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useCallback} from 'react';
 import { useParams } from 'react-router-dom';
 import './StorePage.css';
 import ProductReview from './ProductReview';
