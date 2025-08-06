@@ -1,20 +1,21 @@
-// app.js
+// api/index.js
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import serverless from 'serverless-http';
 
-import connectDatabase from './db/connectDB.js';
-import authRoutes from './Routes/authRoute.js';
-import productRoutes from './Routes/productRoute.js';
-import cartRoutes from './Routes/cartRoutes.js';
-import orderRoutes from './Routes/orderRoutes.js';
+import connectDatabase from '../db/connectDB.js';
+import authRoutes from '../Routes/authRoute.js';
+import productRoutes from '../Routes/productRoute.js';
+import cartRoutes from '../Routes/cartRoutes.js';
+import orderRoutes from '../Routes/orderRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.join(__dirname, 'config', 'config.env') });
+dotenv.config({ path: path.join(__dirname, '../config/config.env') });
 
 const app = express();
 
@@ -32,7 +33,7 @@ app.use('/api/product', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/order', orderRoutes);
 
-// Database connection
+// Connect to database
 connectDatabase();
 
 // Test route
@@ -76,4 +77,4 @@ app.use((err, req, res, next) => {
   res.status(statusCode).json({ success: false, message });
 });
 
-export default app; // Only export app (no listen here)
+export const handler = serverless(app);
