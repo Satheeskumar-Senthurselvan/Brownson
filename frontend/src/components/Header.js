@@ -10,7 +10,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:4000/api/auth/logout', {
+      await fetch('/api/auth/logout', {
         method: 'GET',
         credentials: 'include',
       });
