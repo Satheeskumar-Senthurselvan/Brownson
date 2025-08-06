@@ -49,8 +49,6 @@ backend/uploads/
 
 /backend/config/config.env
 
-frontend/public/img/
-
 .eslintcache
 .stylelintcache
 *.tsbuildinfo

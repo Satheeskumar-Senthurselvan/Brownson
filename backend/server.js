@@ -1,33 +1,36 @@
-// api/index.js
+// server.js
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import serverless from 'serverless-http';
 
-import connectDatabase from '../db/connectDB.js';
-import authRoutes from '../Routes/authRoute.js';
-import productRoutes from '../Routes/productRoute.js';
-import cartRoutes from '../Routes/cartRoutes.js';
-import orderRoutes from '../Routes/orderRoutes.js';
+import connectDatabase from './db/connectDB.js';
+import authRoutes from './Routes/authRoute.js';
+import productRoutes from './Routes/productRoute.js';
+import cartRoutes from './Routes/cartRoutes.js';
+import orderRoutes from './Routes/orderRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.join(__dirname, '../config/config.env') });
+
+// Load environment variables
+dotenv.config({ path: path.join(__dirname, './config/config.env') });
 
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
-// Routes
+// API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/cart', cartRoutes);
@@ -38,7 +41,7 @@ connectDatabase();
 
 // Test route
 app.get('/', (req, res) => {
-  res.send('Backend is running on Vercel!');
+  res.send('Backend is running successfully!');
 });
 
 // 404 handler for APIs
@@ -77,4 +80,8 @@ app.use((err, req, res, next) => {
   res.status(statusCode).json({ success: false, message });
 });
 
-export const handler = serverless(app);
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
