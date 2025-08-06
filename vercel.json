@@ -19,8 +19,12 @@
       "dest": "backend/app.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "frontend/build/app.js"
+      "src": "/",
+      "dest": "/"
+    },
+    {
+      "src": "/login",
+      "dest": "/"
     }
   ]
 }
