@@ -1,4 +1,4 @@
-// ✅ Backend: app.js (Corrected Middleware Order for Vercel Deployment)
+// app.js
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -18,32 +18,62 @@ dotenv.config({ path: path.join(__dirname, 'config', 'config.env') });
 
 const app = express();
 
-// IMPORTANT: In production, change 'http://localhost:3000' to your Vercel frontend URL
+// Middleware
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? 'YOUR_VERCEL_FRONTEND_URL' : 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true
 }));
-
 app.use(express.json());
 app.use(cookieParser());
 
-// Your API routes
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/order', orderRoutes);
 
-// Connect to MongoDB (ensure this is called before any route handlers that use the DB)
+// Database connection
 connectDatabase();
 
+// Test route
+app.get('/', (req, res) => {
+  res.send('Backend is running on Vercel!');
+});
 
+// 404 handler for APIs
+app.use((req, res, next) => {
+  if (req.originalUrl.startsWith('/api/')) {
+    return res.status(404).json({ success: false, message: 'API Route Not Found' });
+  }
+  res.status(404).send('<h1>404 Not Found</h1>');
+});
 
-// REMOVE THE app.listen() CALL
-// const PORT = process.env.PORT || 4000;
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Global Error Handler:', err);
 
-// EXPORT THE APP INSTANCE FOR VERCEL
-export default app; // For ES Modules
-// module.exports = app; // For CommonJS
+  let statusCode = err.statusCode || 500;
+  let message = err.message || 'Internal Server Error';
+
+  if (err.name === 'CastError') {
+    message = `Resource not found. Invalid ${err.path}: ${err.value}`;
+    statusCode = 400;
+  }
+  if (err.code === 11000) {
+    const value = Object.keys(err.keyValue)[0];
+    message = `Duplicate ${value} entered`;
+    statusCode = 400;
+  }
+  if (err.name === 'JsonWebTokenError') {
+    statusCode = 401;
+    message = 'Invalid or malformed token. Please login again.';
+  }
+  if (err.name === 'TokenExpiredError') {
+    statusCode = 401;
+    message = 'Token has expired. Please login again.';
+  }
+
+  res.status(statusCode).json({ success: false, message });
+});
+
+export default app; // Only export app (no listen here)
