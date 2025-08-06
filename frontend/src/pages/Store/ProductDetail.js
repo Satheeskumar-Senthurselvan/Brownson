@@ -1,5 +1,5 @@
 // ProductDetail.js
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState,  useCallback} from 'react';
 import { useParams } from 'react-router-dom';
 import './StorePage.css';
 import ProductReview from './ProductReview';
@@ -14,6 +14,7 @@ const ProductDetail = () => {
   const [comment, setComment] = useState('');
   const [reviews, setReviews] = useState([]);
 
+  const loadProduct = useCallback(() => {
   const loadProduct = async () => {
     const res = await fetch(`http://localhost:4000/api/product/product/${id}`, {
       credentials: 'include',
@@ -24,7 +25,9 @@ const ProductDetail = () => {
       setLoading(false);
     }
   };
+  }, []);
 
+  const loadReviews = useCallback(() => {
   const loadReviews = async () => {
     try {
       const res = await fetch(`http://localhost:4000/api/product/reviews/${id}`, {
@@ -48,6 +51,7 @@ const ProductDetail = () => {
       console.error('Review fetch failed:', error);
     }
   };
+}, []); 
 
 
 useEffect(() => {
