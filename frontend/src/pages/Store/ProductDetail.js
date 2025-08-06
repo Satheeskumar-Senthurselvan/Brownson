@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState, useCallback} from 'react';
 import { useParams } from 'react-router-dom';
 import './StorePage.css';
 import ProductReview from './ProductReview';
+import API_BASE_URL from '../../config';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const ProductDetail = () => {
   const [reviews, setReviews] = useState([]);
 
   const loadProduct = useCallback(async () => {
-    const res = await fetch(`https://brownson-backend.onrender.com/api/product/product/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/product/product/${id}`, {
       credentials: 'include',
     });
     const data = await res.json();
@@ -27,7 +28,7 @@ const ProductDetail = () => {
 
   const loadReviews = useCallback(async () => {
     try {
-      const res = await fetch(`https://brownson-backend.onrender.com/api/product/reviews/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/product/reviews/${id}`, {
         credentials: 'include',
       });
 
