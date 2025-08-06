@@ -1,5 +1,5 @@
-import Cart from '../Models/Cart.js';
-import Product from '../Models/productModel.js'; // Import the Product model
+import Cart from '../models/Cart.js';
+import Product from '../models/productModel.js'; // Import the Product model
 
 export const addToCart = async (req, res) => {
   // Only expect productId and quantity from the request body

@@ -1,7 +1,7 @@
 // This is your updated backend authentication controller.
 // It incorporates fixes for the failed Playwright tests.
 
-import User from '../Models/userModel.js';
+import User from '../models/userModel.js';
 import sendEmail from '../utils/sendEmail.js';
 import jwt from 'jsonwebtoken'; // Still needed for jwt.verify in other places if any
 import bcrypt from 'bcryptjs';
