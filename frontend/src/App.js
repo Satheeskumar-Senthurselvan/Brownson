@@ -1,6 +1,5 @@
 // App.js - Main application component that manages routing and global state
 import React from 'react';
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Routes, Route } from 'react-router-dom';
 
 import Login from './pages/auth/Login';
@@ -42,7 +41,6 @@ const App = () => {
           <Route path="/reset-password/:token" element={<ResetPassword />} />
         </Routes>
       <Footer />
-      <SpeedInsights />
     </div>
   );
 };
