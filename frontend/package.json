@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
+    "@vercel/speed-insights": "^1.2.0",
     "antd": "^5.26.3",
     "axios": "^1.10.0",
     "bootstrap": "^5.3.7",
