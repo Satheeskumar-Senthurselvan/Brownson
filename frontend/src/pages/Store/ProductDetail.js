@@ -50,10 +50,10 @@ const ProductDetail = () => {
   };
 
 
-  useEffect(() => {
-    loadProduct();
-    loadReviews();
-  }, [id]);
+useEffect(() => {
+  loadProduct();
+  loadReviews();
+}, [id, loadProduct, loadReviews]); // Added loadProduct and loadReviews to the dependency array
 
   const decreaseQty = () => {
     if (quantity <= 1) return;

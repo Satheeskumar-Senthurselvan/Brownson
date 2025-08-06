@@ -1,5 +1,5 @@
 // App.js - Main application component that manages routing and global state
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Login from './pages/auth/Login';
@@ -20,7 +20,6 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
 
 const App = () => {
-  const [coins, setCoins] = useState(0);
 
   return (
     <div>

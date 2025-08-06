@@ -2,7 +2,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './Header.css';
-import { Dropdown, Image } from 'react-bootstrap';
+import { Dropdown} from 'react-bootstrap';
 
 const Header = () => {
   const navigate = useNavigate();
