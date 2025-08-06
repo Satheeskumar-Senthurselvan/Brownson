@@ -1,6 +1,6 @@
 // App.js - Main application component that manages routing and global state
 import React from 'react';
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Routes, Route } from 'react-router-dom';
 
 import Login from './pages/auth/Login';
