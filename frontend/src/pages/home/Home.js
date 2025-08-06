@@ -183,7 +183,7 @@ const handleSubmit = async (event) => {
       {/* CONTACT SECTION */}
       <section className="contact" id="contact">
         <div className="image">
-          <img src="/img/image/calls.png" alt="Contact Us Image" />
+          <img src="/img/image/calls.png" alt="Contact Us" />
         </div>
         <form id="contactForm" onSubmit={handleSubmit}>
           <h3>Contact Us</h3>
