@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 const getCookieOptions = (env) => ({
   maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days
   httpOnly: true,
-  sameSite: env !== 'development' ? 'none' : 'strict',
+  sameSite: env !== 'development' ? 'none' : 'none',
   secure: env !== 'development',
 });
 
