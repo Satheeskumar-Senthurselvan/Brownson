@@ -88,8 +88,6 @@ export const signin = async (req, res) => {
 export const logout = (req, res) => {
   res.cookie('jwt', '', {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== 'development',
-    sameSite: process.env.NODE_ENV !== 'development' ? 'none' : 'strict', 
     expires: new Date(0),
   });
   res.status(200).json({ message: 'Logged out successfully' });
