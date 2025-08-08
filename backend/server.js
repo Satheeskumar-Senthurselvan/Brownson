@@ -7,12 +7,12 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import connectDatabase from './db/connectDB.js';
-import authRoutes from './Routes/authRoute.js';
-import productRoutes from './Routes/productRoute.js';
-import cartRoutes from './Routes/cartRoutes.js';
-import orderRoutes  from './Routes/orderRoutes.js'
-import chatbotRoutes from './Routes/chatbotRoutes.js';
-import paymentRoutes from './Routes/paymentRoutes.js';
+import authRoutes from './routes/authRoute.js';
+import productRoutes from './routes/productRoute.js';
+import cartRoutes from './routes/cartRoutes.js';
+import orderRoutes  from './routes/orderRoutes.js'
+import chatbotRoutes from './routes/chatbotRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

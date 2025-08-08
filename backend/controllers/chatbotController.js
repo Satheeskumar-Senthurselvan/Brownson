@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import mongoose from 'mongoose';
 import Product from '../models/productModel.js';
-import Order from '../Models/OrderModel.js';
-import Cart from '../Models/Cart.js';
+import Order from '../models/OrderModel.js';
+import Cart from '../models/Cart.js';
 
 const intentsPath = path.resolve('./data/intents.json');
 const intents = JSON.parse(fs.readFileSync(intentsPath));
