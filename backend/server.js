@@ -11,7 +11,7 @@ import authRoutes from './Routes/authRoute.js';
 import productRoutes from './Routes/productRoute.js';
 import cartRoutes from './Routes/cartRoutes.js';
 import orderRoutes  from './Routes/orderRoutes.js'
-import chatbotRoutes from './routes/chatbotRoutes.js';
+import chatbotRoutes from './Routes/chatbotRoutes.js';
 import paymentRoutes from './Routes/paymentRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
