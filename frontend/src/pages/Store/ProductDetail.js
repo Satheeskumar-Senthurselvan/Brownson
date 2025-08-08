@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './StorePage.css';
 import ProductReview from './ProductReview';
-import API_BASE_URL from '../../config';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -17,7 +16,7 @@ const ProductDetail = () => {
   const [reviewErrors, setReviewErrors] = useState({}); // ✅ FIXED
 
   const loadProduct = async () => {
-    const res = await fetch(`${API_BASE_URL}/api/product/product/${id}`, {
+    const res = await fetch(`https://brownson-backend.onrender.com/api/product/product/${id}`, {
       credentials: 'include',
     });
     const data = await res.json();
@@ -29,7 +28,7 @@ const ProductDetail = () => {
 
   const loadReviews = async () => {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/product/reviews/${id}`, {
+      const res = await fetch(`https://brownson-backend.onrender.com/api/product/reviews/${id}`, {
         credentials: 'include',
       });
 
@@ -148,6 +147,7 @@ const ProductDetail = () => {
                 <p><strong>Product ID:</strong> {product._id}</p>
                 <p><strong>Description:</strong> {product.description}</p>
                 <p><strong>Price:</strong> Rs {product.price}</p>
+                <p><strong>Quantity:</strong> {product.quantity?.value} {product.quantity?.unit}</p>
                 <p><strong>Stock:</strong> {product.stock}</p>
                 <p><strong>Status:</strong> <span style={{ color: product.stock > 0 ? 'green' : 'red' }}>{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
                 <p><strong>Seller:</strong> {product.seller}</p>

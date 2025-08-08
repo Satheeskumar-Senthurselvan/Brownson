@@ -47,6 +47,7 @@ Testing/playwright/.cache/
 
 backend/uploads/
 backend/config/config.env
+config/config.env
 
 .eslintcache
 .stylelintcache

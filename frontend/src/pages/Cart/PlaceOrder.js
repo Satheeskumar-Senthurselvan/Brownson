@@ -1,13 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function PlaceOrder() {
   const navigate = useNavigate();
-  const hasPlacedOrder = useRef(false); // ✅ flag to prevent double run
+  const hasPlacedOrder = useRef(false);
 
   useEffect(() => {
-    if (hasPlacedOrder.current) return; // ✅ already ran once
-    hasPlacedOrder.current = true; // ✅ set flag
+    if (hasPlacedOrder.current) return;
+    hasPlacedOrder.current = true;
 
     let items = [];
     let shipping = {};
@@ -28,7 +30,7 @@ export default function PlaceOrder() {
       }
     } catch (err) {
       console.error('Error parsing order data:', err);
-      alert('Invalid checkout data. Please try again.');
+      toast.error('Invalid checkout data. Please try again.');
       return navigate('/cart');
     }
 
@@ -71,23 +73,23 @@ export default function PlaceOrder() {
             credentials: 'include',
           })
             .then(() => {
-              alert('Order placed successfully!');
+              toast.success('Order placed successfully!');
               localStorage.removeItem('checkoutItems');
               localStorage.removeItem('shippingData');
-              navigate('/orders');
+              navigate('/UserOrders');
             })
             .catch((err) => {
               console.error('Cart clear failed:', err);
-              alert('Order placed, but failed to clear cart.');
-              navigate('/orders');
+              toast.warn('Order placed, but failed to clear cart.');
+              navigate('/UserOrders');
             });
         } else {
-          alert('Failed to place order.');
+          toast.error('Failed to place order.');
         }
       })
       .catch((err) => {
         console.error('Order placement failed:', err);
-        alert('Something went wrong.');
+        toast.error('Something went wrong while placing order.');
       });
 
   }, [navigate]);

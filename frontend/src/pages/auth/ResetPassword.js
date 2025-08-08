@@ -1,5 +1,6 @@
 // src/pages/Auth/ResetPassword.js
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useParams, useNavigate } from 'react-router-dom';
 
 export default function ResetPassword() {
@@ -21,7 +22,7 @@ export default function ResetPassword() {
       const data = await res.json();
 
       if (res.ok) {
-        alert('Password reset successful! Please login.');
+        toast.success('Password reset successful! Please login.');
         navigate('/login');
       } else {
         setMessage(data.error || 'Failed to reset password');

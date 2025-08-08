@@ -1,7 +1,7 @@
 // StorePage.js
 import React, { useEffect, useState } from 'react';
 import './StorePage.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const StorePage = () => {
   const [products, setProducts] = useState([]);
@@ -9,22 +9,31 @@ const StorePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
 
+  // Available categories
   const categories = [
     '',
     'Jellies',
     'Custards',
     'Food essences',
     'Cake ingredients',
-    'Artificial colors and flavors'
+    'Artificial colors and flavors',
   ];
 
+  // ✅ Get category from URL (e.g., /store?category=Jellies)
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const query = useQuery();
+
+  // ✅ Fetch products from backend and apply initial category filter if present
   useEffect(() => {
     fetch('https://brownson-backend.onrender.com/api/product/products')
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          const initialCategory = query.get('category') || '';
           setProducts(data.products);
-          setFilteredProducts(data.products);
+          setSelectedCategory(initialCategory);
         }
       })
       .catch((err) => {
@@ -32,18 +41,19 @@ const StorePage = () => {
       });
   }, []);
 
+  // ✅ Apply filtering whenever products, search term or category changes
   useEffect(() => {
     let results = [...products];
 
     if (searchTerm.trim() !== '') {
-      results = results.filter(product =>
+      results = results.filter((product) =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     if (selectedCategory !== '') {
-      results = results.filter(product =>
-        product.category === selectedCategory
+      results = results.filter(
+        (product) => product.category === selectedCategory
       );
     }
 
@@ -55,28 +65,29 @@ const StorePage = () => {
       <div className="store-header-bar">
         <h1 className="Brownson-title">Brownson Store</h1>
 
-        
-          <input
-            type="text"
-            placeholder="Search product..."
-            className="search-input"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <select
-            className="category-dropdown"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <option value="">All Categories</option>
-            {categories.slice(1).map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
-        
+        {/* Search Input */}
+        <input
+          type="text"
+          placeholder="Search product..."
+          className="search-input"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+        {/* Category Dropdown */}
+        <select
+          className="category-dropdown"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All Categories</option>
+          {categories.slice(1).map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
       </div>
-
-
 
       {/* Product List */}
       <div className="products-container">
@@ -93,6 +104,7 @@ const StorePage = () => {
                 <h2>{product.name}</h2>
                 <p>Category: {product.category}</p>
                 <p>Price: Rs {product.price}</p>
+                <p>Quantity: {product.quantity?.value} {product.quantity?.unit}</p>
 
                 {/* Rating */}
                 <div className="ratings">
@@ -100,11 +112,13 @@ const StorePage = () => {
                     <div
                       className="rating-inner"
                       style={{
-                        width: `${(parseFloat(product.ratings) / 5) * 100}%`
+                        width: `${(parseFloat(product.ratings) / 5) * 100}%`,
                       }}
                     ></div>
                   </div>
-                  <span className="review-count">({product.numOfReviews} Reviews)</span>
+                  <span className="review-count">
+                    ({product.numOfReviews} Reviews)
+                  </span>
                 </div>
 
                 <Link to={`/product/${product._id}`} className="btn-view">

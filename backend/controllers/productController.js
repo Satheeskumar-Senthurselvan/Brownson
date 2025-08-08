@@ -2,7 +2,6 @@
 import Product from '../models/productModel.js';
 import ErrorHandler from '../utils/errorHandler.js';
 import catchAsyncError from '../middlewares/catchAsyncError.js';
-import mongoose from 'mongoose';
 
 // Get all products
 export const getProducts = catchAsyncError(async (req, res, next) => {
@@ -28,16 +27,8 @@ export const newProduct = catchAsyncError(async (req, res, next) => {
 
 // Get single product
 export const getSingleProduct = catchAsyncError(async (req, res, next) => {
-  const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return next(new ErrorHandler('Invalid product ID', 400));
-  }
-
-  const product = await Product.findById(id).populate('reviews.user', 'name');
-  if (!product) {
-    return next(new ErrorHandler('Product not found', 404));
-  }
+  const product = await Product.findById(req.params.id).populate('reviews.user', 'name');
+  if (!product) return next(new ErrorHandler('Product not found', 404));
 
   res.status(200).json({ success: true, product });
 });

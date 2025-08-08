@@ -1,11 +1,14 @@
-// store.js
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import productsReducer from './slices/productsSlice.js';
-import orderReducer from './slices/orderSlice.js'; // ✅ import order reducer
+import productReducer from './slices/productSlice.js'; // ✅ NEW
+import orderReducer from './slices/orderSlice.js';
+import userReducer from './slices/userSlice.js';
 
 const reducer = combineReducers({
   productsState: productsReducer,
-  orderState: orderReducer // ✅ add order slice
+  productState: productReducer, // ✅ ADD this
+  orderState: orderReducer,
+  userState: userReducer,
 });
 
 const store = configureStore({

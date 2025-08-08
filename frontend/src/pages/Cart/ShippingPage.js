@@ -1,19 +1,20 @@
-// ShippingPage.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CartPage.css'; // Use your existing styles
+import './CartPage.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ShippingPage() {
   const [username, setUsername] = useState('');
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
+
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  // ✅ Auto-fill fields from localStorage user
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('User'));
-
     if (user) {
       setUsername(user.name || '');
       setDeliveryAddress(user.address || '');
@@ -21,11 +22,22 @@ export default function ShippingPage() {
     }
   }, []);
 
+  const validate = () => {
+    const newErrors = {};
+    if (!username.trim()) newErrors.username = 'Full name required';
+    if (!deliveryAddress.trim()) newErrors.deliveryAddress = 'Address required';
+    if (!contactNumber.trim()) newErrors.contactNumber = 'Contact number required';
+    if (!paymentMethod) newErrors.paymentMethod = 'Select payment method';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (!username || !deliveryAddress || !contactNumber || !paymentMethod) {
-      return alert('Please fill all fields');
+    if (!validate()) {
+      toast.error('Please fill in all required fields');
+      return;
     }
 
     const shippingData = {
@@ -36,6 +48,7 @@ export default function ShippingPage() {
     };
 
     localStorage.setItem('shippingData', JSON.stringify(shippingData));
+    toast.success('Shipping details saved!');
 
     if (paymentMethod === 'online') {
       navigate('/payment');
@@ -53,7 +66,12 @@ export default function ShippingPage() {
           <input
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder={errors.username || 'Enter full name'}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              setErrors({ ...errors, username: '' });
+            }}
+            className={errors.username ? 'error' : ''}
             required
           />
 
@@ -61,7 +79,12 @@ export default function ShippingPage() {
           <input
             type="text"
             value={deliveryAddress}
-            onChange={(e) => setDeliveryAddress(e.target.value)}
+            placeholder={errors.deliveryAddress || 'Enter delivery address'}
+            onChange={(e) => {
+              setDeliveryAddress(e.target.value);
+              setErrors({ ...errors, deliveryAddress: '' });
+            }}
+            className={errors.deliveryAddress ? 'error' : ''}
             required
           />
 
@@ -69,14 +92,23 @@ export default function ShippingPage() {
           <input
             type="text"
             value={contactNumber}
-            onChange={(e) => setContactNumber(e.target.value)}
+            placeholder={errors.contactNumber || 'Enter contact number'}
+            onChange={(e) => {
+              setContactNumber(e.target.value);
+              setErrors({ ...errors, contactNumber: '' });
+            }}
+            className={errors.contactNumber ? 'error' : ''}
             required
           />
 
           <label>Select Payment Method</label>
           <select
             value={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
+            onChange={(e) => {
+              setPaymentMethod(e.target.value);
+              setErrors({ ...errors, paymentMethod: '' });
+            }}
+            className={errors.paymentMethod ? 'error' : ''}
             required
           >
             <option value="">-- Select --</option>

@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
-    "@vercel/speed-insights": "^1.2.0",
+    "@stripe/react-stripe-js": "^3.9.0",
+    "@stripe/stripe-js": "^7.8.0",
     "antd": "^5.26.3",
     "axios": "^1.10.0",
     "bootstrap": "^5.3.7",

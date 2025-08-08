@@ -1,3 +1,4 @@
+// models/productModel.js
 import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
@@ -70,7 +71,7 @@ const productSchema = new mongoose.Schema({
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'User'
       },
       rating: {
         type: String,
@@ -91,7 +92,6 @@ const productSchema = new mongoose.Schema({
   }
 });
 
-// FIX: Check if the model already exists before compiling it
-const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
 
 export default Product;

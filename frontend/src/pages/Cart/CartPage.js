@@ -1,11 +1,10 @@
-// CartPage.js
 import React, { useEffect, useState, Fragment } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
 import './CartPage.css';
 
 export default function CartPage() {
   const [items, setItems] = useState([]);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // ✅ Initialize useNavigate
 
   useEffect(() => {
     fetchCart();
@@ -16,15 +15,7 @@ export default function CartPage() {
       credentials: 'include',
     });
     const data = await res.json();
-    console.log("Cart API Response:", data); // Add this for debugging
-    if (data.success) {
-      // FIX IS HERE: Access data.cart.items, not data.cartItems
-      setItems(data.cart.items);
-    } else {
-      // Handle the case where success is false, e.g., show an error message
-      console.error("Failed to fetch cart:", data.error);
-      setItems([]); // Ensure items is an empty array even on error
-    }
+    if (data.success) setItems(data.cartItems);
   };
 
   const increaseQty = async (item) => {
@@ -76,8 +67,8 @@ export default function CartPage() {
   };
 
   const checkoutHandler = () => {
-    localStorage.setItem('checkoutItems', JSON.stringify(items));
-    navigate('/shipping');
+    localStorage.setItem('checkoutItems', JSON.stringify(items)); 
+    navigate('/shipping'); // ✅ No more undefined error
   };
 
   return (
@@ -89,9 +80,8 @@ export default function CartPage() {
           <h2 className="cart-title">Your Cart: <b>{items.length} items</b></h2>
           <div className="cart-content">
             <div className="cart-items">
-              {/* Ensure items is an array before mapping */}
-              {Array.isArray(items) && items.map(item => (
-                <Fragment key={item._id}>
+              {items.map(item => (
+                <Fragment key={item.productId}>
                   <div className="cart-item">
                     <img src={item.image} alt={item.productName} className="item-image" />
                     <Link to={`/product/${item.productId}`} className="item-name">{item.productName}</Link>
@@ -107,7 +97,7 @@ export default function CartPage() {
                       />
                       <button onClick={() => increaseQty(item)}>+</button>
                     </div>
-                <button className="remove-button" onClick={() => removeItem(item.productId._id)}>🗑</button>
+                    <button className="remove-button" onClick={() => removeItem(item.productId)}>🗑</button>
                   </div>
                 </Fragment>
               ))}

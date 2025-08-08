@@ -1,13 +1,15 @@
-// config/multerUpload.js
 import multer from 'multer';
-import path from 'path';
+import path, { dirname } from 'path';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const dir = 'frontend/public/img/product';
+    const dir = path.join(__dirname, '..', '..', 'frontend', 'public', 'img', 'product');
 
-    // ✅ Ensure the folder exists
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -20,12 +22,12 @@ const storage = multer.diskStorage({
   }
 });
 
-// ✅ Optional: Filter only image types
 const fileFilter = (req, file, cb) => {
   if (
     file.mimetype === 'image/jpeg' ||
     file.mimetype === 'image/png' ||
-    file.mimetype === 'image/jpg'
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/webp'
   ) {
     cb(null, true);
   } else {

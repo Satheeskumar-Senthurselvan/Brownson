@@ -1,28 +1,33 @@
-// models/Order.js
+// models/OrderModel.js
 import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
   user: {
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    username: { type: String, required: true },
-    deliveryAddress: { type: String, required: true },
-    contactNumber: { type: String, required: true }
+    userId: mongoose.Schema.Types.ObjectId,
+    username: String,
+    deliveryAddress: String,
+    contactNumber: String,
   },
   products: [
     {
-      productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-      productName: { type: String, required: true },
-      image: { type: String },
-      quantity: { type: Number, required: true }
-    }
+      productId: mongoose.Schema.Types.ObjectId,
+      productName: String,
+      image: String,
+      quantity: Number,
+      price: Number,
+    },
   ],
-  totalPrice: { type: Number, required: true },
-  paymentStatus: { type: String, enum: ['payed', 'cash_on_delivery'], required: true },
+  totalPrice: Number,
+  paymentStatus: {
+    type: String,
+    enum: ['paid', 'cash_on_delivery'], // ✅ allow 'paid'
+    default: 'cash_on_delivery',
+  },
   orderStatus: {
     type: String,
     enum: ['packing', 'ready to ship', 'shipping', 'handed over'],
-    default: 'packing'
-  }
+    default: 'packing',
+  },
 }, { timestamps: true });
 
 export default mongoose.model('Order', orderSchema);

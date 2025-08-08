@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './Profile.css';
 
 const UpdateProfile = () => {
@@ -61,14 +62,14 @@ const UpdateProfile = () => {
 
       const data = await res.json();
       if (res.ok) {
-        alert('Profile updated successfully');
+        toast.success('Profile updated successfully');
         navigate('/userProfile');
       } else {
-        alert(data.error || 'Update failed');
+        toast.error(data.error || 'Update failed');
       }
     } catch (err) {
       console.error('Update error:', err);
-      alert('Server error');
+      toast.error('Server error');
     }
   };
 

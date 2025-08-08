@@ -38,11 +38,6 @@ const handleSubmit = async (event) => {
   const formData = new FormData(form);
 
   try {
-    // ✅ Submit to local PHP backend (if you have it set up)
-    await fetch('/usermesg_process.php', {
-      method: 'POST',
-      body: formData
-    });
 
     // ✅ Submit to Formspree (or other email service)
     const response = await fetch('https://formspree.io/f/meokwejl', {
@@ -127,6 +122,33 @@ const handleSubmit = async (event) => {
               <p>Cash on delivery <span><i className="bi bi-check-circle-fill"></i></span></p>
               <p>One-two day delivery <span><i className="bi bi-check-circle-fill"></i></span></p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FILTER CART */}
+      <section className="filter-cart">
+        <h1 className="heading">Quick <span>Filter</span> Cart</h1>
+        <div className="filter-boxes">
+          <div className="filter-item" onClick={() => window.location.href = '/store?category=Jellies'}>
+            <img src="/img/image/jelly.png" alt="Jellies" />
+            <p>Jellies</p>
+          </div>
+          <div className="filter-item" onClick={() => window.location.href = '/store?category=Custards'}>
+            <img src="/img/image/custard.png" alt="Custards" />
+            <p>Custards</p>
+          </div>
+          <div className="filter-item" onClick={() => window.location.href = '/store?category=Food essences'}>
+            <img src="/img/image/essence.png" alt="Essences" />
+            <p>Essences</p>
+          </div>
+          <div className="filter-item" onClick={() => window.location.href = '/store?category=Cake ingredients'}>
+            <img src="/img/image/cake.png" alt="Cake Ingredients" />
+            <p>Cake Items</p>
+          </div>
+          <div className="filter-item" onClick={() => window.location.href = '/store?category=Artificial colors and flavors'}>
+            <img src="/img/image/colors.png" alt="Colors & Flavors" />
+            <p>Colors</p>
           </div>
         </div>
       </section>

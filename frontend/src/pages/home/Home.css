@@ -258,3 +258,58 @@
 .plan .box-container .box .amount span {
   font-size: 3rem;
 }
+
+/* --- FILTER CART STYLES --- */
+.filter-cart {
+  padding: 3rem 5rem;
+  background: #fdf6f6;
+  
+}
+
+.filter-cart .heading {
+  font-size: 2.5rem;
+  color: #B82933;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.filter-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.filter-item {
+  width: 15%;
+  height: 150px;
+  background: #fff;
+  border: 2px solid #B82933;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.filter-item:hover {
+  width: 18%;
+  background: #fff;
+  color: #B82933;
+}
+
+.filter-item img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0.5rem;
+}
+
+.filter-item p {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
