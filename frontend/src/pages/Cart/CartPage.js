@@ -1,10 +1,10 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; 
 import './CartPage.css';
 
 export default function CartPage() {
   const [items, setItems] = useState([]);
-  const navigate = useNavigate(); // ✅ Initialize useNavigate
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     fetchCart();
@@ -68,7 +68,7 @@ export default function CartPage() {
 
   const checkoutHandler = () => {
     localStorage.setItem('checkoutItems', JSON.stringify(items)); 
-    navigate('/shipping'); // ✅ No more undefined error
+    navigate('/shipping'); 
   };
 
   return (
@@ -105,8 +105,8 @@ export default function CartPage() {
 
             <div className="cart-summary">
               <h3>Order Summary</h3>
-              <p>Subtotal: <span>{items.reduce((acc, item) => acc + item.quantity, 0)} Units</span></p>
-              <p>Total: <span>Rs {items.reduce((acc, item) => acc + item.quantity * item.price, 0)}</span></p>
+              <p>Subtotal:- <span>{items.reduce((acc, item) => acc + item.quantity, 0)} Units</span></p>
+              <p>Total:- <span>Rs {items.reduce((acc, item) => acc + item.quantity * item.price, 0)}</span></p>
               <button className="checkout-btn" onClick={checkoutHandler}>Check out</button>
             </div>
           </div>
