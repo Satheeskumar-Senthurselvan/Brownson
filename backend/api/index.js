@@ -2,13 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-import connectDatabase from './db/connectDB.js';
-import authRoutes from './Routes/authRoute.js';
-import productRoutes from './Routes/productRoute.js';
-import cartRoutes from './Routes/cartRoutes.js';
-import orderRoutes from './Routes/orderRoutes.js';
-import chatbotRoutes from './routes/chatbotRoutes.js';
-import paymentRoutes from './Routes/paymentRoutes.js';
+import connectDatabase from '../db/connectDB.js';
+import authRoutes from '../Routes/authRoute.js';
+import productRoutes from '../Routes/productRoute.js';
+import cartRoutes from '../Routes/cartRoutes.js';
+import orderRoutes from '../Routes/orderRoutes.js';
+import chatbotRoutes from '../routes/chatbotRoutes.js';
+import paymentRoutes from '../Routes/paymentRoutes.js';
 
 dotenv.config();
 

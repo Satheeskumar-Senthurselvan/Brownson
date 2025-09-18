@@ -4,10 +4,10 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
-    "start:test": "NODE_ENV=test node server.js",
-    "dev:test": "NODE_ENV=test nodemon server.js",
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js",
+    "start:test": "NODE_ENV=test node api/index.js",
+    "dev:test": "NODE_ENV=test nodemon api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "echo 'No build step required for this project.'" 
   },
