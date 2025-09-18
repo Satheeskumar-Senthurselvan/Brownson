@@ -4,10 +4,10 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "start:test": "NODE_ENV=test node app.js",
-    "dev:test": "NODE_ENV=test nodemon app.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "start:test": "NODE_ENV=test node server.js",
+    "dev:test": "NODE_ENV=test nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

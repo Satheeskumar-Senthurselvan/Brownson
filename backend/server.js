@@ -43,5 +43,4 @@ app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/payment', paymentRoutes);
 
 connectDatabase();
-
 export default app;
