@@ -14,16 +14,18 @@ dotenv.config();
 
 const app = express();
 
+// Middlewares
 app.use(cors({
   origin: 'https://brownson.vercel.app',
   credentials: true
 }));
-
 app.use(express.json());
 app.use(cookieParser());
 
+// Database
 connectDatabase();
 
+// Routes
 app.get('/', (req, res) => {
   res.json({ message: "Backend is running!" });
 });
@@ -35,6 +37,7 @@ app.use('/api/order', orderRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/payment', paymentRoutes);
 
+// 404 handling
 app.use((req, res, next) => {
   if (req.originalUrl.startsWith('/api/')) {
     return res.status(404).json({ success: false, message: 'API Route Not Found' });
@@ -42,11 +45,13 @@ app.use((req, res, next) => {
   res.status(404).send('<!DOCTYPE html><html><head><title>Not Found</title></head><body><h1>404 Not Found</h1><p>The requested URL was not found on this server.</p></body></html>');
 });
 
+// Export for Vercel
+export default app;
+
+// Local dev only (not used on Vercel)
 if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 4000;
+  const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`🚀 Server running locally on http://localhost:${PORT}`);
   });
 }
-
-export default app;
