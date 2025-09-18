@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import mongoose from 'mongoose';
-import Product from '../models/productModel.js';
+import Product from '../Models/productModel.js';
 import Order from '../Models/OrderModel.js';
 import Cart from '../Models/Cart.js';
 

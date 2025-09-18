@@ -1,5 +1,5 @@
 import Order from '../Models/OrderModel.js';
-import Product from '../models/productModel.js';
+import Product from '../Models/productModel.js';
 export const createOrder = async (req, res) => {
   try {
     const { products, totalPrice, paymentStatus, username, deliveryAddress, contactNumber } = req.body;
