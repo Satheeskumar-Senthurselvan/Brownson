@@ -1,7 +1,8 @@
 {
   "functions": {
     "server.js": {
-      "includeFiles": "data/**/*"
+      "includeFiles": "data/**/*",
+      "src": "server.js" 
     }
   },
   "routes": [
