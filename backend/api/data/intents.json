@@ -1,0 +1,115 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Hey", "Good morning", "Good evening", "Is anyone there?", "Hey there", "Greetings"],
+      "responses": [
+        "Hello! Welcome to Brownson. How can I assist you today?",
+        "Hi there! Looking for a cake or jelly?",
+        "Welcome to Brownson! How can I help you today?"
+      ]
+    },
+    {
+      "tag": "product_inquiry",
+      "patterns": [
+        "What products do you sell?", "Tell me about your products", "Do you have cakes?", "I want jellies",
+        "Show me food items", "Available items"
+      ],
+     "responses": [
+  "We sell cake-making and jelly-making ingredients such as food essences, custard powder, cake mix, jelly crystals, and more. Would you like to explore our product range?",
+  "Our top-selling items include cake and jelly ingredients like vanilla essence, custard powder, baking soda, jelly packets, and other essential baking supplies!"
+]
+
+    },
+    {
+      "tag": "offers",
+      "patterns": [
+        "What offers are available?", "Any discounts today?", "Show me your promotions", "Current deals?", "Bundle offers"
+      ],
+      "responses": [
+        "We have 10% off selected items, free delivery on all orders today, and a limited cake + jelly bundle for Rs. 6000!"
+      ]
+    },
+    {
+      "tag": "delivery_info",
+      "patterns": [
+        "How long does delivery take?", "What is your delivery time?", "Is delivery free?", "Delivery charges?", "Do you deliver everywhere?"
+      ],
+      "responses": [
+        "We deliver within 1–2 days islandwide. Orders today qualify for free delivery!"
+      ]
+    },
+    {
+      "tag": "payment_methods",
+      "patterns": [
+        "How can I pay?", "Payment options?", "Do you accept cash?", "Can I pay online?", "Is card payment available?"
+      ],
+      "responses": [
+        "You can pay using cards or choose cash on delivery. Both options are available for most orders."
+      ]
+    },
+    {
+      "tag": "order_tracking",
+      "patterns": [
+        "Where is my order?", "Track my order", "Order status", "Has my delivery started?", "When will I get my items?"
+      ],
+      "responses": [
+        "Please enter your order ID to track your order. You can also check your email for the tracking link."
+      ]
+    },
+    {
+      "tag": "contact_support",
+      "patterns": [
+        "I need help", "Contact customer service", "How do I reach you?", "Talk to a representative", "Support needed"
+      ],
+      "responses": [
+        "You can contact us via the form at the bottom of the page or email support@brownson.lk. We’re happy to help!"
+      ]
+    },
+    {
+      "tag": "store_location",
+      "patterns": [
+        "Where is your shop?", "Do you have a physical store?", "Can I visit Brownson?", "Store location"
+      ],
+      "responses": [
+        "We are currently operating online only. All products are delivered from our warehouse in Colombo."
+      ]
+    },
+    {
+      "tag": "return_policy",
+      "patterns": [
+        "Can I return a product?", "What's your return policy?", "How do I return an item?", "Do you accept returns?",
+        "Product return process", "Return a cake", "Return my order"
+      ],
+     "responses": [
+  "Yes, we accept returns within 7 days of purchase. Products must be unopened, properly packed, and in their original condition. Opened or damaged items cannot be returned. All returns are subject to admin approval. Please contact our support team to initiate the return process."
+]
+
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "Appreciate it", "Thanks a lot", "Thank you very much"],
+      "responses": [
+        "You're most welcome!",
+        "Glad I could help. Let me know if there's anything else.",
+        "Happy to help!"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "Goodbye", "See you", "Talk to you later", "Catch you later"],
+      "responses": [
+        "Goodbye! Come back soon to Brownson!",
+        "Take care! We hope to serve you again."
+      ]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [""],
+      "responses": [
+        "Sorry, I didn’t understand that. Could you try asking differently?",
+        "I’m not sure how to respond. Please try again with a different question."
+      ]
+    }
+  ]
+}

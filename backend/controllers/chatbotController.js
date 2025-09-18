@@ -5,8 +5,8 @@ import Product from '../models/productModel.js';
 import Order from '../models/OrderModel.js';
 import Cart from '../models/Cart.js';
 
-const intentsPath = path.resolve('./data/intents.json');
-const intents = JSON.parse(fs.readFileSync(intentsPath));
+const intentsPath = path.join(process.cwd(), 'backend/api/data/intents.json');
+const intents = JSON.parse(fs.readFileSync(intentsPath, 'utf-8'));
 
 export const chatbotReply = async (req, res) => {
   const { message, userId } = req.body;
