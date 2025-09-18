@@ -4,6 +4,7 @@ import { FaEye } from 'react-icons/fa';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import './adminDashboard.css';
+import API_BASE_URL from '../config';
 
 const AdminAllReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -13,7 +14,7 @@ const AdminAllReviewsPage = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const { data } = await axios.get('http://localhost:4000/api/product/admin/reviews', {
+        const { data } = await axios.get(`${API_BASE_URL}/api/product/admin/reviews`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -39,7 +40,7 @@ const AdminAllReviewsPage = () => {
     if (!window.confirm('Are you sure you want to delete this review?')) return;
 
     try {
-      await axios.delete(`http://localhost:4000/api/product/review`, {
+      await axios.delete(`${API_BASE_URL}/api/product/review`, {
         params: { id: reviewId, productId },
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,

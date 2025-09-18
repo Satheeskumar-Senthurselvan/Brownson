@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Sidebar from './Sidebar';
-
 import './adminDashboard.css';
+import API_BASE_URL from '../config';
 
 export default function SingleOrderPage() {
   const { id } = useParams();
@@ -17,7 +17,7 @@ export default function SingleOrderPage() {
 
   const fetchSingleOrder = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/order/admin/order/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/order/admin/order/${id}`, {
         credentials: 'include',
       });
       const data = await res.json();
@@ -36,7 +36,7 @@ export default function SingleOrderPage() {
 
   const updateOrderStatus = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/order/${id}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/order/${id}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

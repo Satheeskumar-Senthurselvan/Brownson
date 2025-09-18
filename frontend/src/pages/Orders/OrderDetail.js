@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import API_BASE_URL from '../../config';
 
 export default function OrderDetail() {
   const { id } = useParams();
@@ -7,7 +8,7 @@ export default function OrderDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/order/${id}`, {
+    fetch(`${API_BASE_URL}/api/order/${id}`, {
       credentials: 'include'
     })
       .then(res => res.json())

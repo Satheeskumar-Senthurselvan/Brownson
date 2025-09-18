@@ -5,12 +5,13 @@ import {
   adminUsersSuccess,
   adminUsersFail,
 } from '../slices/userSlice';
+import API_BASE_URL from '../config';
 
 export const getUsers = () => async (dispatch) => {
   try {
     dispatch(adminUsersRequest());
 
-    const { data } = await axios.get('http://localhost:4000/api/auth/admin/users', {
+    const { data } = await axios.get(`${API_BASE_URL}/api/auth/admin/users`, {
       withCredentials: true,
     });
 

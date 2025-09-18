@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './StorePage.css';
 import ProductReview from './ProductReview';
+import API_BASE_URL from '../../config';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -13,10 +14,10 @@ const ProductDetail = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [reviews, setReviews] = useState([]);
-  const [reviewErrors, setReviewErrors] = useState({}); // ✅ FIXED
+  const [reviewErrors, setReviewErrors] = useState({});
 
   const loadProduct = async () => {
-    const res = await fetch(`http://localhost:4000/api/product/product/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/product/product/${id}`, {
       credentials: 'include',
     });
     const data = await res.json();
@@ -28,14 +29,14 @@ const ProductDetail = () => {
 
   const loadReviews = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/product/reviews/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/product/reviews/${id}`, {
         credentials: 'include',
       });
 
       const contentType = res.headers.get('content-type');
       if (!res.ok || !contentType || !contentType.includes('application/json')) {
         const text = await res.text();
-        console.error('❌ Invalid JSON Response:', text);
+        console.error(' Invalid JSON Response:', text);
         throw new Error('Invalid JSON response from server');
       }
 
@@ -74,7 +75,7 @@ const ProductDetail = () => {
     if (Object.keys(errors).length > 0) return;
 
     try {
-      const res = await fetch('http://localhost:4000/api/product/review', {
+      const res = await fetch(`${API_BASE_URL}/api/product/review`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -100,7 +101,7 @@ const ProductDetail = () => {
 
   const addToCartHandler = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/cart/add', {
+      const res = await fetch(`${API_BASE_URL}/api/cart/add`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

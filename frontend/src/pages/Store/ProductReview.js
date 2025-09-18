@@ -1,6 +1,6 @@
 // ProductReview.js
 import React from 'react';
-import './StorePage.css'; // assuming this includes shared styles
+import './StorePage.css';
 
 export default function ProductReview({ reviews }) {
   return (

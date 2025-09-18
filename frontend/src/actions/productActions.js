@@ -8,18 +8,18 @@ import {
   newProductSuccess,
   newProductFail
 } from '../slices/productsSlice';
-
 import {
   setProductDeleted,
   setProductDeleteError
 } from '../slices/productSlice';
+import API_BASE_URL from '../config';
 
 // Get all admin products
 export const getAdminProducts = () => async (dispatch) => {
   try {
     dispatch(adminProductsRequest());
 
-    const { data } = await axios.get('http://localhost:4000/api/product/admin/products', {
+    const { data } = await axios.get(`${API_BASE_URL}/api/product/admin/products`, {
       withCredentials: true,
     });
 
@@ -34,7 +34,7 @@ export const createNewProduct = (formData) => async (dispatch) => {
   try {
     dispatch(newProductRequest());
 
-    const { data } = await axios.post('http://localhost:4000/api/product/admin/product/new', formData, {
+    const { data } = await axios.post(`${API_BASE_URL}/api/product/admin/product/new`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -50,7 +50,7 @@ export const createNewProduct = (formData) => async (dispatch) => {
 // ✅ Delete product by ID
 export const deleteProduct = (id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:4000/api/product/admin/product/${id}`, {
+    await axios.delete(`${API_BASE_URL}/api/product/admin/product/${id}`, {
       withCredentials: true,
     });
 

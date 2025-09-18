@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 import './adminDashboard.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API_BASE_URL from '../config';
 
 const AdminUserDetailsPage = () => {
   const { email } = useParams();
@@ -16,7 +17,7 @@ const AdminUserDetailsPage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/auth/user/${email}`);
+        const res = await fetch(`${API_BASE_URL}/api/auth/user/${email}`);
         const data = await res.json();
         if (data.user) {
           setUser(data.user);
@@ -36,7 +37,7 @@ const AdminUserDetailsPage = () => {
 
   const handleRoleUpdate = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/auth/admin/user/role/${email}`, {
+      const res = await fetch(`${API_BASE_URL}/api/auth/admin/user/role/${email}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

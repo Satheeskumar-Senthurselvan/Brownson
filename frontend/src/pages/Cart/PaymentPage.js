@@ -1,10 +1,10 @@
-// frontend/src/pages/Cart/PaymentPage.js
 import React, { useState } from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 import './CartPage.css';
+import API_BASE_URL from '../../config';
 
 const stripePromise = loadStripe('pk_test_51Rp32MJ8fsxYQ2Yf8HrSFuwT7wp7L8Te73UI7SQk6rtnlHSNiWz8Uhz00N8Dakn3MBKDWi2RJfdJziL046xF9TOv00ubfUP17N');
 
@@ -23,7 +23,7 @@ function StripeCheckoutForm() {
     if (!stripe || !elements) return;
 
     try {
-      const res = await fetch('http://localhost:4000/api/payment/create-payment-intent', {
+      const res = await fetch(`${API_BASE_URL}/api/payment/create-payment-intent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: 1000 }),
@@ -63,7 +63,7 @@ function StripeCheckoutForm() {
           contactNumber: shipping.contactNumber,
         };
 
-        const orderRes = await fetch('http://localhost:4000/api/order/create', {
+        const orderRes = await fetch(`${API_BASE_URL}/api/order/create`, {
           method: 'POST',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
@@ -73,7 +73,7 @@ function StripeCheckoutForm() {
         const orderData = await orderRes.json();
 
         if (orderData.success) {
-          await fetch('http://localhost:4000/api/cart/clear', {
+          await fetch(`${API_BASE_URL}/api/cart/clear`, {
             method: 'DELETE',
             credentials: 'include',
           });

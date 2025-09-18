@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './StorePage.css';
 import { Link, useLocation } from 'react-router-dom';
+import API_BASE_URL from '../../config';
 
 const StorePage = () => {
   const [products, setProducts] = useState([]);
@@ -25,9 +26,8 @@ const StorePage = () => {
   };
   const query = useQuery();
 
-  // ✅ Fetch products from backend and apply initial category filter if present
   useEffect(() => {
-    fetch('http://localhost:4000/api/product/products')
+    fetch(`${API_BASE_URL}/api/product/products`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

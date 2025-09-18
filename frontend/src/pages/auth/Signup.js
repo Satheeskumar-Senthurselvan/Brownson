@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Login.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API_BASE_URL from '../../config';
 
 const Signup = ({ onSwitchToLogin }) => {
   const [signupData, setSignupData] = useState({
@@ -48,7 +49,7 @@ const Signup = ({ onSwitchToLogin }) => {
     if (!validate()) return;
 
     try {
-      const res = await fetch('http://localhost:4000/api/auth/signup', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(signupData),

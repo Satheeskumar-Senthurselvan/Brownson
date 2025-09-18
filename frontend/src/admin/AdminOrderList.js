@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'; // ✅ Needed for navigation
 import Sidebar from './Sidebar';
 import { FaEye } from 'react-icons/fa';
 import './adminDashboard.css';
+import API_BASE_URL from '../config';
 
 const AdminOrderList = () => {
   const [orders, setOrders] = useState([]);
@@ -14,7 +15,7 @@ const AdminOrderList = () => {
   // ✅ Fetch all orders (admin only)
   const fetchOrders = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/order/admin/orders', {
+      const res = await fetch(`${API_BASE_URL}/api/order/admin/orders`, {
         credentials: 'include',
       });
 
@@ -37,7 +38,7 @@ const AdminOrderList = () => {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://localhost:4000/api/order/admin/order/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/order/admin/order/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });

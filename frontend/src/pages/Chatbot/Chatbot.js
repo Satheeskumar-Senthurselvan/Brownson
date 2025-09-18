@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaUser, FaRobot } from 'react-icons/fa'; // icons
 import './Chatbot.css';
+import API_BASE_URL from '../../config';
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
@@ -24,7 +25,7 @@ const Chatbot = () => {
         return;
       }
 
-      const res = await axios.post('http://localhost:4000/api/chatbot/message', {
+      const res = await axios.post(`${API_BASE_URL}/api/chatbot/message`, {
         message: input,
         userId: userId, // ✅ send user ID to backend
       });

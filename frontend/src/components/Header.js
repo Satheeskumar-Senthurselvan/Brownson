@@ -3,6 +3,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './Header.css';
 import { Dropdown, Image } from 'react-bootstrap';
+import API_BASE_URL from '../config';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:4000/api/auth/logout', {
+      await fetch(`${API_BASE_URL}/api/auth/logout`, {
         method: 'GET',
         credentials: 'include',
       });

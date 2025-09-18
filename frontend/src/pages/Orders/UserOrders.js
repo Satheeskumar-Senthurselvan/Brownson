@@ -1,9 +1,9 @@
-// src/pages/Orders/UserOrders.js
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserOrders } from '../../slices/orderSlice'; // ✅ correct path
+import { setUserOrders } from '../../slices/orderSlice';
 import { Link } from 'react-router-dom';
 import './UserOrders.css';
+import API_BASE_URL from '../../config';
 
 export default function UserOrders() {
   const { userOrders = [] } = useSelector(state => state.orderState);
@@ -12,7 +12,7 @@ export default function UserOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch('http://localhost:4000/api/order/my-orders', {
+        const res = await fetch(`${API_BASE_URL}/api/order/my-orders`, {
           credentials: 'include',
         });
 
@@ -23,7 +23,7 @@ export default function UserOrders() {
           alert('Failed to load orders');
         }
       } catch (err) {
-        console.error('❌ Order fetch error:', err);
+        console.error(' Order fetch error:', err);
         alert('Something went wrong');
       }
     };

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import './adminDashboard.css';
 import { useParams } from 'react-router-dom';
+import API_BASE_URL from '../config';
 
 const SingleProductReviewsPage = () => {
   const { productId } = useParams();
@@ -15,7 +16,7 @@ const SingleProductReviewsPage = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:4000/api/product/reviews/${productId}`, {
+        const { data } = await axios.get(`${API_BASE_URL}/api/product/reviews/${productId}`, {
           headers: {
             Authorization: localStorage.getItem('token'),
           },

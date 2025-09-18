@@ -1,4 +1,5 @@
 import axios from 'axios';
+import API_BASE_URL from '../config';
 
 // Action types for admin orders
 export const ADMIN_ORDERS_REQUEST = 'order/ADMIN_ORDERS_REQUEST';
@@ -11,7 +12,7 @@ export const SET_USER_ORDERS = 'order/SET_USER_ORDERS';
 // ✅ Action: Fetch orders for logged-in user
 export const userOrders = () => async (dispatch) => {
   try {
-    const { data } = await axios.get('http://localhost:4000/api/order/my-orders', {
+    const { data } = await axios.get(`${API_BASE_URL}/api/order/my-orders`, {
       withCredentials: true,
     });
 
@@ -31,7 +32,7 @@ export const adminOrders = () => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_ORDERS_REQUEST });
 
-    const { data } = await axios.get('http://localhost:4000/api/order/admin/orders', {
+    const { data } = await axios.get(`${API_BASE_URL}/api/order/admin/orders`, {
       withCredentials: true,
     });
 

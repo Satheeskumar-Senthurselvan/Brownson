@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Profile.css'; 
+import API_BASE_URL from '../../config';
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -8,7 +9,7 @@ const UserProfile = () => {
 
   const fetchUserData = async (email) => {
     try {
-      const res = await fetch(`http://localhost:4000/api/auth/user/${email}`);
+      const res = await fetch(`${API_BASE_URL}/api/auth/user/${email}`);
       const data = await res.json();
       if (res.ok) {
         setUser(data.user);

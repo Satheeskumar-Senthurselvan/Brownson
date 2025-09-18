@@ -1,11 +1,9 @@
-// src/admin/UpdateProduct.js
-
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import { toast } from "react-toastify";
 import "./adminDashboard.css";
+import API_BASE_URL from "../config";
 
 const UpdateProduct = () => {
   const { id } = useParams();
@@ -36,7 +34,7 @@ const UpdateProduct = () => {
     const fetchProduct = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:4000/api/product/product/${id}`,
+          `${API_BASE_URL}/api/product/product/${id}`,
           { withCredentials: true }
         );
         setProduct(data.product);
@@ -63,7 +61,7 @@ const UpdateProduct = () => {
 
     try {
       await axios.put(
-        `http://localhost:4000/api/product/admin/product/${id}`,
+        `${API_BASE_URL}/api/product/admin/product/${id}`,
         {
           name,
           price,

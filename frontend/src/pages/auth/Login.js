@@ -4,6 +4,7 @@ import Signup from './Signup';
 import './Login.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API_BASE_URL from '../../config';
 
 const Login = () => {
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
@@ -51,7 +52,7 @@ const Login = () => {
     if (!validate()) return;
 
     try {
-      const res = await fetch('http://localhost:4000/api/auth/signin', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(signinData),
