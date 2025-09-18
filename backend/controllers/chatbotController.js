@@ -4,8 +4,13 @@ import mongoose from 'mongoose';
 import Product from '../models/productModel.js';
 import Order from '../models/OrderModel.js';
 import Cart from '../models/Cart.js';
+import { fileURLToPath } from 'url';
 
-const intentsPath = path.join(process.cwd(), 'backend/api/data/intents.json');
+// Get the current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const intentsPath = path.join(__dirname, '../api/data/intents.json');
 const intents = JSON.parse(fs.readFileSync(intentsPath, 'utf-8'));
 
 export const chatbotReply = async (req, res) => {
