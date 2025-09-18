@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "scripts": {
-    "start": "node api/index.js",
-    "dev": "nodemon api/index.js",
-    "start:test": "NODE_ENV=test node api/index.js",
-    "dev:test": "NODE_ENV=test nodemon api/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo 'No build step required for this project.'" 
-  },
+ "scripts": {
+  "start": "node api/index.js",
+  "dev": "nodemon api/index.js",
+  "start:test": "NODE_ENV=test node api/index.js",
+  "dev:test": "NODE_ENV=test nodemon api/index.js",
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "build": "echo 'No build step required for this project.'" 
+}
+,
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.7.0",
