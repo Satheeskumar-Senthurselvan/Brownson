@@ -1,13 +1,14 @@
 {
   "functions": {
-    "api/index.js": {
+    "server.js": {
       "includeFiles": "data/**/*"
     }
   },
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/api/index.js"
+      "dest": "/server.js"
     }
-  ]
+  ],
+  "outputDirectory": "."
 }
