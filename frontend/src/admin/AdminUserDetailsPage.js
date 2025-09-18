@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import './adminDashboard.css';
 import { toast } from 'react-toastify';
@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AdminUserDetailsPage = () => {
   const { email } = useParams();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
   const [newRole, setNewRole] = useState('user');
@@ -15,7 +16,7 @@ const AdminUserDetailsPage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`https://brownson-backend.onrender.com/api/auth/user/${email}`);
+        const res = await fetch(`http://localhost:4000/api/auth/user/${email}`);
         const data = await res.json();
         if (data.user) {
           setUser(data.user);
@@ -35,7 +36,7 @@ const AdminUserDetailsPage = () => {
 
   const handleRoleUpdate = async () => {
     try {
-      const res = await fetch(`https://brownson-backend.onrender.com/api/auth/admin/user/role/${email}`, {
+      const res = await fetch(`http://localhost:4000/api/auth/admin/user/role/${email}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

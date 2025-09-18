@@ -19,7 +19,7 @@ export const getAdminProducts = () => async (dispatch) => {
   try {
     dispatch(adminProductsRequest());
 
-    const { data } = await axios.get('https://brownson-backend.onrender.com/api/product/admin/products', {
+    const { data } = await axios.get('http://localhost:4000/api/product/admin/products', {
       withCredentials: true,
     });
 
@@ -34,7 +34,7 @@ export const createNewProduct = (formData) => async (dispatch) => {
   try {
     dispatch(newProductRequest());
 
-    const { data } = await axios.post('https://brownson-backend.onrender.com/api/product/admin/product/new', formData, {
+    const { data } = await axios.post('http://localhost:4000/api/product/admin/product/new', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -50,7 +50,7 @@ export const createNewProduct = (formData) => async (dispatch) => {
 // ✅ Delete product by ID
 export const deleteProduct = (id) => async (dispatch) => {
   try {
-    await axios.delete(`https://brownson-backend.onrender.com/api/product/admin/product/${id}`, {
+    await axios.delete(`http://localhost:4000/api/product/admin/product/${id}`, {
       withCredentials: true,
     });
 

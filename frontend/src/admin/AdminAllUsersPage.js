@@ -11,7 +11,7 @@ const AdminAllUsersPage = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch('https://brownson-backend.onrender.com/api/auth/admin/users', {
+      const res = await fetch('http://localhost:4000/api/auth/admin/users', {
         credentials: 'include',
       });
       const data = await res.json();
@@ -33,7 +33,7 @@ const AdminAllUsersPage = () => {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`https://brownson-backend.onrender.com/api/auth/admin/user/${userId}`, {
+      const res = await fetch(`http://localhost:4000/api/auth/admin/user/${userId}`, {
         method: 'DELETE',
         credentials: 'include',
       });

@@ -126,7 +126,7 @@ const handleSubmit = async (event) => {
         </div>
       </section>
 
-      {/* FILTER Product  CART */}
+      {/* FILTER CART */}
       <section className="filter-cart">
         <h1 className="heading">Quick <span>Filter</span> Cart</h1>
         <div className="filter-boxes">
@@ -153,7 +153,7 @@ const handleSubmit = async (event) => {
         </div>
       </section>
 
-    
+      {/* ABOUT SECTION */}
       <section className="about" id="about">
         <div className="image">
           <img src="/img/image/about.png" style={{ borderRadius: '10px' }} alt="About Brownson" />
@@ -205,7 +205,7 @@ const handleSubmit = async (event) => {
       {/* CONTACT SECTION */}
       <section className="contact" id="contact">
         <div className="image">
-          <img src="/img/image/calls.png" alt="Contact Us" />
+          <img src="/img/image/calls.png" alt="Contact Us Image" />
         </div>
         <form id="contactForm" onSubmit={handleSubmit}>
           <h3>Contact Us</h3>

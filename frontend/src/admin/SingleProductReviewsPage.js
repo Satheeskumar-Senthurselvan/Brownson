@@ -15,7 +15,7 @@ const SingleProductReviewsPage = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const { data } = await axios.get(`https://brownson-backend.onrender.com/api/product/reviews/${productId}`, {
+        const { data } = await axios.get(`http://localhost:4000/api/product/reviews/${productId}`, {
           headers: {
             Authorization: localStorage.getItem('token'),
           },

@@ -36,7 +36,7 @@ const UpdateProduct = () => {
     const fetchProduct = async () => {
       try {
         const { data } = await axios.get(
-          `https://brownson-backend.onrender.com/api/product/product/${id}`,
+          `http://localhost:4000/api/product/product/${id}`,
           { withCredentials: true }
         );
         setProduct(data.product);
@@ -63,7 +63,7 @@ const UpdateProduct = () => {
 
     try {
       await axios.put(
-        `https://brownson-backend.onrender.com/api/product/admin/product/${id}`,
+        `http://localhost:4000/api/product/admin/product/${id}`,
         {
           name,
           price,

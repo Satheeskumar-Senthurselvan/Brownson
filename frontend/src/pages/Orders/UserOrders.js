@@ -12,7 +12,7 @@ export default function UserOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch('https://brownson-backend.onrender.com/api/order/my-orders', {
+        const res = await fetch('http://localhost:4000/api/order/my-orders', {
           credentials: 'include',
         });
 

@@ -14,7 +14,7 @@ const AdminOrderList = () => {
   // ✅ Fetch all orders (admin only)
   const fetchOrders = async () => {
     try {
-      const res = await fetch('https://brownson-backend.onrender.com/api/order/admin/orders', {
+      const res = await fetch('http://localhost:4000/api/order/admin/orders', {
         credentials: 'include',
       });
 
@@ -37,7 +37,7 @@ const AdminOrderList = () => {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`https://brownson-backend.onrender.com/api/order/admin/order/${id}`, {
+      const res = await fetch(`http://localhost:4000/api/order/admin/order/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });

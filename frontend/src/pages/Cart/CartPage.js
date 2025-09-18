@@ -1,17 +1,17 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
 import './CartPage.css';
 
 export default function CartPage() {
   const [items, setItems] = useState([]);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate(); // ✅ Initialize useNavigate
 
   useEffect(() => {
     fetchCart();
   }, []);
 
   const fetchCart = async () => {
-    const res = await fetch('https://brownson-backend.onrender.com/api/cart', {
+    const res = await fetch('http://localhost:4000/api/cart', {
       credentials: 'include',
     });
     const data = await res.json();
@@ -43,7 +43,7 @@ export default function CartPage() {
   };
 
   const updateCartItem = async (item, quantity) => {
-    await fetch('https://brownson-backend.onrender.com/api/cart/add', {
+    await fetch('http://localhost:4000/api/cart/add', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -59,7 +59,7 @@ export default function CartPage() {
   };
 
   const removeItem = async (productId) => {
-    await fetch(`https://brownson-backend.onrender.com/api/cart/remove/${productId}`, {
+    await fetch(`http://localhost:4000/api/cart/remove/${productId}`, {
       method: 'DELETE',
       credentials: 'include',
     });
@@ -68,7 +68,7 @@ export default function CartPage() {
 
   const checkoutHandler = () => {
     localStorage.setItem('checkoutItems', JSON.stringify(items)); 
-    navigate('/shipping'); 
+    navigate('/shipping'); // ✅ No more undefined error
   };
 
   return (
@@ -105,8 +105,8 @@ export default function CartPage() {
 
             <div className="cart-summary">
               <h3>Order Summary</h3>
-              <p>Subtotal:- <span>{items.reduce((acc, item) => acc + item.quantity, 0)} Units</span></p>
-              <p>Total:- <span>Rs {items.reduce((acc, item) => acc + item.quantity * item.price, 0)}</span></p>
+              <p>Subtotal: <span>{items.reduce((acc, item) => acc + item.quantity, 0)} Units</span></p>
+              <p>Total: <span>Rs {items.reduce((acc, item) => acc + item.quantity * item.price, 0)}</span></p>
               <button className="checkout-btn" onClick={checkoutHandler}>Check out</button>
             </div>
           </div>

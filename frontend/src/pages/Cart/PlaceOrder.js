@@ -52,7 +52,7 @@ export default function PlaceOrder() {
       contactNumber: shipping.contactNumber
     };
 
-    fetch('https://brownson-backend.onrender.com/api/order/create', {
+    fetch('http://localhost:4000/api/order/create', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -68,7 +68,7 @@ export default function PlaceOrder() {
       })
       .then((data) => {
         if (data.success) {
-          fetch('https://brownson-backend.onrender.com/api/cart/clear', {
+          fetch('http://localhost:4000/api/cart/clear', {
             method: 'DELETE',
             credentials: 'include',
           })

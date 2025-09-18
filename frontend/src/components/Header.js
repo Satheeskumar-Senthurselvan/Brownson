@@ -2,7 +2,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './Header.css';
-import { Dropdown} from 'react-bootstrap';
+import { Dropdown, Image } from 'react-bootstrap';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch('https://brownson-backend.onrender.com/api/auth/logout', {
+      await fetch('http://localhost:4000/api/auth/logout', {
         method: 'GET',
         credentials: 'include',
       });

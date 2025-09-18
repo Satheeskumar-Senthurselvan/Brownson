@@ -4,6 +4,7 @@ import {
   ADMIN_ORDERS_REQUEST,
   ADMIN_ORDERS_SUCCESS,
   ADMIN_ORDERS_FAIL,
+  SET_USER_ORDERS,
 } from '../actions/orderActions';
 
 const orderSlice = createSlice({

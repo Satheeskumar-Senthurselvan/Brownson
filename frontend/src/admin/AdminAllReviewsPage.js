@@ -13,7 +13,7 @@ const AdminAllReviewsPage = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const { data } = await axios.get('https://brownson-backend.onrender.com/api/product/admin/reviews', {
+        const { data } = await axios.get('http://localhost:4000/api/product/admin/reviews', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -39,7 +39,7 @@ const AdminAllReviewsPage = () => {
     if (!window.confirm('Are you sure you want to delete this review?')) return;
 
     try {
-      await axios.delete(`https://brownson-backend.onrender.com/api/product/review`, {
+      await axios.delete(`http://localhost:4000/api/product/review`, {
         params: { id: reviewId, productId },
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,

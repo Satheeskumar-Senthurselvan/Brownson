@@ -1,5 +1,5 @@
 // App.js - Main application component that manages routing and global state
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Login from './pages/auth/Login';
@@ -31,6 +31,7 @@ import SingleProductReviewsPage from './admin/SingleProductReviewsPage';
 import Chatbot from './pages/Chatbot/Chatbot';
 
 const App = () => {
+  const [coins, setCoins] = useState(0);
 
   return (
     <div>

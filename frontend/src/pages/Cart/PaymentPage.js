@@ -23,7 +23,7 @@ function StripeCheckoutForm() {
     if (!stripe || !elements) return;
 
     try {
-      const res = await fetch('https://brownson-backend.onrender.com/api/payment/create-payment-intent', {
+      const res = await fetch('http://localhost:4000/api/payment/create-payment-intent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: 1000 }),
@@ -63,7 +63,7 @@ function StripeCheckoutForm() {
           contactNumber: shipping.contactNumber,
         };
 
-        const orderRes = await fetch('https://brownson-backend.onrender.com/api/order/create', {
+        const orderRes = await fetch('http://localhost:4000/api/order/create', {
           method: 'POST',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
@@ -73,7 +73,7 @@ function StripeCheckoutForm() {
         const orderData = await orderRes.json();
 
         if (orderData.success) {
-          await fetch('https://brownson-backend.onrender.com/api/cart/clear', {
+          await fetch('http://localhost:4000/api/cart/clear', {
             method: 'DELETE',
             credentials: 'include',
           });

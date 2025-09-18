@@ -11,7 +11,7 @@ export const SET_USER_ORDERS = 'order/SET_USER_ORDERS';
 // ✅ Action: Fetch orders for logged-in user
 export const userOrders = () => async (dispatch) => {
   try {
-    const { data } = await axios.get('https://brownson-backend.onrender.com/api/order/my-orders', {
+    const { data } = await axios.get('http://localhost:4000/api/order/my-orders', {
       withCredentials: true,
     });
 
@@ -31,7 +31,7 @@ export const adminOrders = () => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_ORDERS_REQUEST });
 
-    const { data } = await axios.get('https://brownson-backend.onrender.com/api/order/admin/orders', {
+    const { data } = await axios.get('http://localhost:4000/api/order/admin/orders', {
       withCredentials: true,
     });
 

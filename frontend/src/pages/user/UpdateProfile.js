@@ -19,7 +19,7 @@ const UpdateProfile = () => {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setEmail(user.email);
-      fetch(`https://brownson-backend.onrender.com/api/auth/user/${user.email}`)
+      fetch(`http://localhost:4000/api/auth/user/${user.email}`)
         .then(res => res.json())
         .then(data => {
           if (data.user) {
@@ -55,7 +55,7 @@ const UpdateProfile = () => {
     if (profileImage) payload.append('ProfileImg', profileImage); // ✅ Match backend
 
     try {
-      const res = await fetch(`https://brownson-backend.onrender.com/api/auth/user/update/${email}`, {
+      const res = await fetch(`http://localhost:4000/api/auth/user/update/${email}`, {
         method: 'PUT',
         body: payload,
       });

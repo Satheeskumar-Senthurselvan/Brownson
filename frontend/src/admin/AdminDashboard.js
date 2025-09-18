@@ -46,7 +46,7 @@ const AdminDashboard = () => {
     </div>
   );
 };
-// DashboardCard component for displaying individual stats
+
 const DashboardCard = ({ title, count, color, link }) => (
   <div className={`dashboard-card card-${color}`}>
     <div className="card-content">

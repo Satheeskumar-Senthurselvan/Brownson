@@ -16,7 +16,7 @@ const ProductDetail = () => {
   const [reviewErrors, setReviewErrors] = useState({}); // ✅ FIXED
 
   const loadProduct = async () => {
-    const res = await fetch(`https://brownson-backend.onrender.com/api/product/product/${id}`, {
+    const res = await fetch(`http://localhost:4000/api/product/product/${id}`, {
       credentials: 'include',
     });
     const data = await res.json();
@@ -28,7 +28,7 @@ const ProductDetail = () => {
 
   const loadReviews = async () => {
     try {
-      const res = await fetch(`https://brownson-backend.onrender.com/api/product/reviews/${id}`, {
+      const res = await fetch(`http://localhost:4000/api/product/reviews/${id}`, {
         credentials: 'include',
       });
 
@@ -74,7 +74,7 @@ const ProductDetail = () => {
     if (Object.keys(errors).length > 0) return;
 
     try {
-      const res = await fetch('https://brownson-backend.onrender.com/api/product/review', {
+      const res = await fetch('http://localhost:4000/api/product/review', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -100,7 +100,7 @@ const ProductDetail = () => {
 
   const addToCartHandler = async () => {
     try {
-      const res = await fetch('https://brownson-backend.onrender.com/api/cart/add', {
+      const res = await fetch('http://localhost:4000/api/cart/add', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

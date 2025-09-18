@@ -17,7 +17,7 @@ export default function SingleOrderPage() {
 
   const fetchSingleOrder = async () => {
     try {
-      const res = await fetch(`https://brownson-backend.onrender.com/api/order/admin/order/${id}`, {
+      const res = await fetch(`http://localhost:4000/api/order/admin/order/${id}`, {
         credentials: 'include',
       });
       const data = await res.json();
@@ -36,7 +36,7 @@ export default function SingleOrderPage() {
 
   const updateOrderStatus = async () => {
     try {
-      const res = await fetch(`https://brownson-backend.onrender.com/api/order/${id}/status`, {
+      const res = await fetch(`http://localhost:4000/api/order/${id}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -24,7 +24,7 @@ const Chatbot = () => {
         return;
       }
 
-      const res = await axios.post('https://brownson-backend.onrender.com/api/chatbot/message', {
+      const res = await axios.post('http://localhost:4000/api/chatbot/message', {
         message: input,
         userId: userId, // ✅ send user ID to backend
       });

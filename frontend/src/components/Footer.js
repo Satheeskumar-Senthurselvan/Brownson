@@ -18,4 +18,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;// footer component for the Brownson website
+export default Footer;

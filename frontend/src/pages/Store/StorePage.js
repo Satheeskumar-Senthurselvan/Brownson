@@ -27,7 +27,7 @@ const StorePage = () => {
 
   // ✅ Fetch products from backend and apply initial category filter if present
   useEffect(() => {
-    fetch('https://brownson-backend.onrender.com/api/product/products')
+    fetch('http://localhost:4000/api/product/products')
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
